@@ -24,3 +24,8 @@ This is the backend for the Flask React project.
     $ heroku run -a {NAME_OF_HEROKU_APP} python -m database
 ```
 10. profit
+
+github link:
+https://github.com/shaieleigh/bestLifeLiving
+heroku link:
+
