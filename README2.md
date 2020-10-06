@@ -28,4 +28,4 @@ This is the backend for the Flask React project.
 github link:
 https://github.com/shaieleigh/bestLifeLiving
 heroku link:
-
+https://bestlifeliving.herokuapp.com/
