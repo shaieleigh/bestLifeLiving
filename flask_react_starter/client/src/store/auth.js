@@ -29,9 +29,9 @@ export const login = (email, password) => {
         body: JSON.stringify({ email, password })
 
       });
-      console.log(res);
+      // console.log(res);
       res.data = await res.json();
-      console.log(res.data)
+      // console.log(res.data)
       if (res.ok) {
         dispatch(setUser(res.data.user))
       }
@@ -51,7 +51,7 @@ export const logout = () => {
 };
 
 
-export const signup = (email, username, password) => {
+export const signup = (username, email, password) => {
     return async (dispatch) => {
       const res = await fetch('api/users/signup', {
         method: "post",
@@ -66,8 +66,10 @@ export const signup = (email, username, password) => {
       //error handling
 
       const { message } = data;
-      console.log("this is the error message", message)
-      const errorsList = document.getElementById("sign-up-errors");
+      if (message) {
+
+        console.log("this is the error message", message)
+        const errorsList = document.getElementById("sign-up-errors");
       errorsList.innerHTML = '';
       if (message) {
         errorsList.style.display = "flex";
@@ -75,8 +77,9 @@ export const signup = (email, username, password) => {
         errorLi.innerHTML = message;
         errorsList.appendChild(errorLi)
       }
+    }
 
-      dispatch(setUser(data));
+      dispatch(setUser(data.user));
       res.data = data;
       return res;
     }
@@ -86,6 +89,7 @@ export const signup = (email, username, password) => {
 export default function authReducer(state={}, action) {
     switch(action.type) {
       case SET_USER:
+
         return action.user;
       case REMOVE_USER:
         return {};

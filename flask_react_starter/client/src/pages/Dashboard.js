@@ -159,7 +159,7 @@ export default function Dashboard() {
     async function users() {
       const res = await fetch('/api/users')
       const data = await res.json();
-      console.log(data)
+      // console.log(data)
     }
     users();
   })

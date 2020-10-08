@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import UserList from './components/UsersList';
 import Dashboard from './pages/Dashboard';
 import LogIn from './pages/LogIn'
+import SignUp from './pages/SignUp'
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
                 <LogIn />
             </Route>
             <Route path='/signup'>
-                <h1>Sign up</h1>
+                <SignUp />
             </Route>
             <Route path="/users">
                 <UserList />
