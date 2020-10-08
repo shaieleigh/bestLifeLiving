@@ -145,7 +145,7 @@ export default function Dashboard() {
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
   const logout = async () => {
-    await fetch('/users', {
+    await fetch('/api/users/logout', {
       method: 'DELETE',
       headers: {
         'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
@@ -157,14 +157,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function users() {
-      const res = await fetch('/')
+      const res = await fetch('/api/users')
       const data = await res.json();
       console.log(data)
     }
     users();
   })
 
-  // if (!currentUserId) return <Redirect to='login'/>
+  if (!currentUserId) return <Redirect to='login'/>
   const handleDrawerOpen = () => {
     setOpen(true);
   };

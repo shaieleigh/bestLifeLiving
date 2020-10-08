@@ -29,7 +29,7 @@ def index():
 @user_routes.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    console.log(data)
+
     # try:
     email = data['email']
     password = data['password']

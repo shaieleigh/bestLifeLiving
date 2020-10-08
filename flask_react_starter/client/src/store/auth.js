@@ -21,7 +21,6 @@ export const removeUser = () => {
 export const login = (email, password) => {
     return async dispatch => {
       const res = await fetch('/api/users/login', {
-
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,12 +31,17 @@ export const login = (email, password) => {
       });
       console.log(res);
       res.data = await res.json();
+      console.log(res.data)
+      if (res.ok) {
+        dispatch(setUser(res.data.user))
+      }
+      return res;
     }
 }
 
 export const logout = () => {
     return async (dispatch) => {
-      const res = await fetch('/api/users', {
+      const res = await fetch('/api/users/logout', {
         method: "delete",
       });
       if (res.ok) dispatch(removeUser());

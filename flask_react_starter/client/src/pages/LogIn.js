@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { login } from '../store/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
+import { setUser } from '../store/auth';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -53,18 +54,21 @@ export default function LogIn() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const currentUserToken = useSelector(state => state.auth.auth_token);
+  const currentUserToken = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
-  // const history = useHistory();
+  // useEffect(() => {
+
+  // })
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
-   // history.push("/");
+      dispatch(login(email, password));
   }
+
+
   const handleDemoSubmit = (e) => {
       e.preventDefault();
       dispatch(login("demo@user.org", "password"));
-      //history.push("/");
+
   }
   if (currentUserToken) return <Redirect to="/dashboard" />;
 
@@ -115,6 +119,16 @@ export default function LogIn() {
             className={classes.submit}
           >
             Log In
+          </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleDemoSubmit}
+          >
+            DEMO USER
           </Button>
           <Grid container>
             <Grid item xs>
