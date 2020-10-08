@@ -1,7 +1,7 @@
 """create users table
 
 Revision ID: 6327ed0403e8
-Revises: 
+Revises:
 Create Date: 2020-09-30 14:11:26.738620
 
 """
@@ -22,9 +22,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('hashed_password', sa.Binary(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    sa.UniqueConstraint('password')
     )
     # ### end Alembic commands ###
 

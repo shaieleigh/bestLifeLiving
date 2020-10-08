@@ -14,6 +14,7 @@ def set_password(password):
 
 
 def verify_password(password, hashed_password):
+    # Return value could be made more sophisticated
     if bcrypt.checkpw(password.encode('utf-8'), hashed_password):
         return True
     else:
@@ -28,7 +29,7 @@ def index():
 @user_routes.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-
+    console.log(data)
     # try:
     email = data['email']
     password = data['password']
@@ -91,7 +92,7 @@ def signup():
     # except Exception:
     #     return jsonify(message="try failed"), 409
 
-@user_routes.route("/logout", methods=["DELETE"])
+@user_routes.route("/logout", methods=['DELETE'])
 def logout():
     logout_user()
     return 'Goodbye!'
