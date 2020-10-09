@@ -16,7 +16,7 @@ hashed8 = set_password('password8')
 hashed9 = set_password('password9')
 
 with app.app_context():
-  # db.drop_all()
+  db.drop_all()
   db.create_all()
 
   ian = User(username = 'Ian', email = 'ian@aa.io', hashed_password=hashed1)

@@ -67,7 +67,7 @@ export default function LogIn() {
 
   const handleDemoSubmit = (e) => {
       e.preventDefault();
-      dispatch(login("demo@user.org", "password"));
+      dispatch(login("demo@user.org", "password9"));
 
   }
   if (currentUserToken) return <Redirect to="/dashboard" />;

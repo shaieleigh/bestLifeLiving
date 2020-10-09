@@ -33,25 +33,32 @@ def login():
     # try:
     email = data['email']
     password = data['password']
-
+    print('EMAIL:', email)
+    print('PASSWORD:', password)
     if not email or not password:
+        print('NOT EMAIL OR NOT PASSWORD HIT')
         return jsonify(message='Email and password required'), 400
 
 
     user = User.query.filter_by(email=email).first()
     if not user:
+        print('NOT USER HIT')
         return jsonify(message='email not found'), 400
 
     verified = verify_password(password, user.hashed_password)
 
     if not verified:
+        print ('PASSWORD VERIFIED FAILED')
         return jsonify(message='Password verify failed'), 403
     else:
         auth_token = create_access_token(
             identity={"email": user.email})
-    session["user"] = user.to_dict()
     user1 = user.to_dict()
-    return jsonify(auth_token=auth_token, user=user1), 200
+    # del user1['hashed_password']
+    session["user"] = user1
+    print('USER1', user1)
+    print('AUTH_TOKEN', str(auth_token))
+    return jsonify(auth_token=str(auth_token), user=user1), 200
 
     # except Exception:
     #     return jsonify(message='Login failed'), 408
