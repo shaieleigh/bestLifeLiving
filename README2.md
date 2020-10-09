@@ -44,3 +44,11 @@ If you already have heroku set up and you're just updating it, all you have to d
  `heroku run -a {NAME_OF_HEROKU_APP} {your_migration_script_here}`
  heroku run -a bestlifeliving python
 Actually, you don't need to update your database(step 6) every time
+
+TO RESET THE DATABASE COMPLETELY ON HEROKU:
+
+heroku pg:reset -a bestlifeliving
+heroku run -a bestlifeliving flask db init
+then as before:
+heroku run -a bestlifeliving python -m database
+
