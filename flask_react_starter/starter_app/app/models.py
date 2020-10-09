@@ -17,10 +17,10 @@ class User(db.Model):
       "email": self.email
     }
 
-class Appointment(db.Model):
-  __tablename__ = 'appointments'
+# class Appointment(db.Model):
+#   __tablename__ = 'appointments'
 
-  id = db.Column(db.Integer, primary_key = True)
-  category = db.Column(db.String(25), nullable=False)
-  date = db.Column(db.Date, nullable=False)
-  time = db.Column(db.Time, nullable=False)
+#   id = db.Column(db.Integer, primary_key = True)
+#   category = db.Column(db.String(25), nullable=False)
+#   date = db.Column(db.Date, nullable=False)
+#   time = db.Column(db.Time, nullable=False)
