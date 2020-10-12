@@ -17,7 +17,7 @@ This is the backend for the Flask React project.
 4. Run `$ heroku login`
 5. Login to the heroku container registry `$ heroku container:login`
 6. CD into `starter_app` and push your backend docker container to heroku (this will build the Flask dockerfile, and push) `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
-7. CD into `client` and push your backend docker container to heroku (this will build the Flask dockerfile, and push) `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
+7. CD into `client` and push your backend docker container to heroku (this will build the Flask dockerfile, and push)      `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
 8. Release your docker container to heroku `$ heroku container:release web -a {NAME_OF_HEROKU_APP}`
 9. set up your database:
 ```bash
@@ -42,7 +42,7 @@ If you already have heroku set up and you're just updating it, all you have to d
  `$ heroku container:release web -a {NAME_OF_HEROKU_APP}`
 6. Set up your database:
  `heroku run -a {NAME_OF_HEROKU_APP} {your_migration_script_here}`
- heroku run -a bestlifeliving python
+ heroku run -a bestlifeliving python database.py
 Actually, you don't need to update your database(step 6) every time
 
 TO RESET THE DATABASE COMPLETELY ON HEROKU:
@@ -51,4 +51,3 @@ heroku pg:reset -a bestlifeliving
 heroku run -a bestlifeliving flask db init
 then as before:
 heroku run -a bestlifeliving python -m database
-
