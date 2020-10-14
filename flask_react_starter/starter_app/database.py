@@ -67,10 +67,10 @@ with app.app_context():
   appt2 = Appointment(categoryId=5, userId=9, date=date(2020, 10, 30), time=time(hour=13, minute=15), notes='Rocky/Dr. Bianca')
   appt3 = Appointment(categoryId=7, userId=9, date=date(2020, 10, 30), time=time(hour=12, minute=30), notes='Phone Interview with App Academy 1 888 888 8888')
   appt4 = Appointment(categoryId=2, userId=9, date=date(2020, 11, 2), time=time(hour=11, minute=45), notes='Hair and Nail Salon')
-  appt5 = Appointment(categoryId=3, userId=9, date=date(2020, 11, 2), time=time(hour=2, minute=45), notes='Barber Bob')
+  appt5 = Appointment(categoryId=3, userId=9, date=date(2020, 11, 2), time=time(hour=14, minute=45), notes='Barber Bob')
   appt6 = Appointment(categoryId=4, userId=9, date=date(2020, 11, 5), time=time(hour=10, minute=15), notes='Massage Therapist Monica')
-  appt7 = Appointment(categoryId=6, userId=9, date=date(2020, 11, 6), time=time(hour=1, minute=15), notes='Rocky Stinks')
-  appt8 = Appointment(categoryId=8, userId=9, date=date(2020, 11, 6), time=time(hour=3, minute=30), notes='Google Meeting')
+  appt7 = Appointment(categoryId=6, userId=9, date=date(2020, 11, 6), time=time(hour=13, minute=15), notes='Rocky Stinks')
+  appt8 = Appointment(categoryId=8, userId=9, date=date(2020, 11, 6), time=time(hour=15, minute=30), notes='Google Meeting')
   appt9 = Appointment(categoryId=10, userId=9, date=date(2020, 10, 30), time=time(hour=22, minute=0), notes='PARTY AT MY HOUSE!!!!')
 
   db.session.add(appt1)
