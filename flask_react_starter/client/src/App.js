@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import Dashboard from './pages/Dashboard';
@@ -13,7 +13,7 @@ function App() {
   console.log("____Rendering app_____")
   return (
     <BrowserRouter>
-        <nav>
+        {/* <nav>
             <ul>
                 <li><NavLink to='/login' activeclass="active">Log in</NavLink></li>
                 <li><NavLink to='/signup' activeclass="active">Sign up</NavLink></li>
@@ -23,7 +23,7 @@ function App() {
                 <li><NavLink to="/appointments" activeclass="active">Appointments</NavLink></li>
                 <li><NavLink to="/todos" activeclass="active">To Dos</NavLink></li>
             </ul>
-        </nav>
+        </nav> */}
         <Switch>
             <Route path='/dashboard'>
                 <Dashboard />

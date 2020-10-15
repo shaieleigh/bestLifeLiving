@@ -23,43 +23,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import FaceIcon from '@material-ui/icons/Face';
+import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { SideNavBarList } from '../components/SideNavBarList'
+import ToDos from '../components/ToDos'
+import Appointments from '../components/Appointments'
 
-// export default function Dashboard() {
-//   const currentUserId = useSelector(state => state.auth.id);
-//   const dispatch = useDispatch();
-//   const logout = async () => {
-//     await fetch('/users', {
-//       method: 'DELETE',
-//       headers: {
-//         'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-//       }
-//     });
-//     dispatch(setUser({}));
-//   }
-
-
-//   useEffect(() => {
-//     async function users() {
-//       const res = await fetch('/api/users')
-//       const data = await res.json();
-//       console.log(data)
-//     }
-//     users();
-
-
-//   })
-
-//   // if (!currentUserId) return <Redirect to='login'/>
-
-//   return (
-//     <>
-//       <h1>Dashboard</h1>
-//       <button onClick={logout}>Log out</button>
-//     </>
-//   )
-//     }
 
 const drawerWidth = 240;
 
@@ -136,16 +106,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    // justifyContent: 'flex-end'
   },
   fixedHeight: {
-    height: 240,
+    height: 340,
   },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [apptToDoOV, setApptToDoOV] = React.useState(true);
+  const [usersLi, setUsersLi] = React.useState(false);
+  const [apptLi, setApptLi] = React.useState(false);
+  const [toDoLi, setToDoLi] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
   const logout = async () => {
@@ -169,12 +142,42 @@ export default function Dashboard() {
   })
 
   if (!currentUserId) return <Redirect to='login'/>
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // const handleApptToDoOV = (e) => {
+  //   setApptToDoOV(true)
+  //   setUsersLi(false)
+  //   setToDoLi(false)
+  //   setApptLi(false)
+  // }
+
+  // const handleUsersLiCl = (e) => {
+  //   setApptToDoOV(false)
+  //   setUsersLi(true)
+  //   setToDoLi(false)
+  //   setApptLi(false)
+  // }
+
+  // const handleToDoLiCl = (e) => {
+  //   setApptToDoOV(false)
+  //   setUsersLi(false)
+  //   setToDoLi(true)
+  //   setApptLi(false)
+  // }
+
+  // const handleApptLiCl = (e) => {
+  //   setApptToDoOV(false)
+  //   setUsersLi(false)
+  //   setToDoLi(false)
+  //   setApptLi(true)
+  // }
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -224,13 +227,39 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid
+              item xs={12} md={6} lg={6}
+              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+            >
               <Paper className={fixedHeightPaper}>
                 {/* <Chart /> */}
               </Paper>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={6} lg={6}
+              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                {/* <Deposits /> */}
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}
+              className={clsx(!usersLi && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                {/* <Deposits /> */}
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}
+              className={clsx(!apptLi && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                {/* <Deposits /> */}
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}
+              className={clsx(!toDoLi && classes.menuButtonHidden )}
+            >
               <Paper className={fixedHeightPaper}>
                 {/* <Deposits /> */}
               </Paper>
@@ -263,7 +292,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{SideNavBarList}</List>
+        <List><SideNavBarList/></List>
         <Divider />
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
