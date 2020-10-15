@@ -21,7 +21,10 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+
+import { SideNavBarList } from '../components/SideNavBarList'
 
 // export default function Dashboard() {
 //   const currentUserId = useSelector(state => state.auth.id);
@@ -133,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    // justifyContent: 'flex-end'
   },
   fixedHeight: {
     height: 240,
@@ -141,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
   const logout = async () => {
@@ -176,7 +180,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -188,7 +192,7 @@ export default function Dashboard() {
           <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="textPrimary" noWrap className={classes.title}>
-            Dashboard
+            Best Life Dashboard
           </Typography>
           <button onClick={logout}>Log out</button>
           {/* <IconButton color="inherit"> */}
@@ -198,7 +202,7 @@ export default function Dashboard() {
           {/* </IconButton> */}
         </Toolbar>
       </AppBar>
-      <Drawer
+      {/* <Drawer
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -212,9 +216,9 @@ export default function Dashboard() {
         </div>
         <Divider />
         {/* <List>{mainListItems}</List> */}
-        <Divider />
+        {/*<Divider /> }
         {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
+      {/*</Drawer> */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
@@ -243,6 +247,26 @@ export default function Dashboard() {
           </Box>
         </Container>
       </main>
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbarIcon}>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronRightIcon className={clsx(!open && classes.menuButtonHidden)} />
+          </IconButton>
+          <IconButton onClick={handleDrawerOpen}>
+            <ChevronLeftIcon className={clsx(open && classes.menuButtonHidden)} />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>{SideNavBarList}</List>
+        <Divider />
+        {/* <List>{secondaryListItems}</List> */}
+      </Drawer>
     </div>
   );
 }

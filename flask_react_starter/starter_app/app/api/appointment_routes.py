@@ -13,7 +13,8 @@ def index():
   print(listAppts)
   for item in listAppts['appointments']:
     timeDue = time.strftime(item['time'], '%H:%M')
-    dateDue = datetime.date.weekday() + date.strftime(item['date'], '%m %d %Y')
+    dateItem = item['date']
+    dateDue = date.strftime(item['date'], '%w %m %d %Y')
     print(timeDue)
     item['time'] = timeDue
     item['date'] = dateDue
