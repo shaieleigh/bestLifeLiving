@@ -12,10 +12,18 @@ export default function Appointments () {
         fetchData();
     }, []);
 
-    const appointmentList = appointmentsLi.map((aptdate) => {
+    const appointmentList = appointmentsLi.map((apt) => {
+    const date = apt.date.slice(2)
+    const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+    'Friday', 'Saturday']
+    const wDay = weekday[apt.date[0]]
       return (
-        // <User key={user.id} user={user} />
-      <p key={aptdate.id}>{aptdate.date}</p>
+        <>
+          <strong>Appointment:</strong> {apt.notes}<br />
+          <strong>Date:</strong> {wDay} {date}<br />
+          <strong>Time:</strong> {apt.time}<br />
+          <hr />
+        </>
       )
     })
     console.log("____Rendering Appointments List____")
