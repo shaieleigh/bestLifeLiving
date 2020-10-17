@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
-import { setUser } from '../store/auth';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,10 +25,26 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import FaceIcon from '@material-ui/icons/Face';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
+import { setUser } from '../store/auth';
 import { SideNavBarList } from '../components/SideNavBarList'
 import ToDos from '../components/ToDos'
 import Appointments from '../components/Appointments'
+import UsersList from '../components/UsersList';
+import ToDoOV from '../components/ToDoOV'
+import ApptOV from '../components/ApptOV'
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -73,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: 'relative',
+    top: '80px',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -115,15 +131,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  // const [apptToDoOV, setApptToDoOV] = React.useState(true);
-  // const [usersLi, setUsersLi] = React.useState(false);
-  // const [apptLi, setApptLi] = React.useState(false);
-  // const [toDoLi, setToDoLi] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
-  const apptToDoOV = useSelector(state => state.apptToDoOV);
-  const usersLi = useSelector(state => state.usersLi)
-  const apptLi = useSelector(state => state.apptLi)
-  const toDoLi = useSelector(state => state.toDoLi)
+  const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
+  const usersLi = useSelector(state => state.assistV.usersLi)
+  const apptLi = useSelector(state => state.assistV.apptLi)
+  const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
   const logout = async () => {
     await fetch('/api/users/logout', {
@@ -134,7 +146,7 @@ export default function Dashboard() {
     });
     dispatch(setUser({}));
   }
-
+  console.log('STATE', apptToDoOV)
 
   useEffect(() => {
     async function users() {
@@ -154,33 +166,14 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  // const handleApptToDoOV = (e) => {
-  //   setApptToDoOV(true)
-  //   setUsersLi(false)
-  //   setToDoLi(false)
-  //   setApptLi(false)
-  // }
-
-  // const handleUsersLiCl = (e) => {
-  //   setApptToDoOV(false)
-  //   setUsersLi(true)
-  //   setToDoLi(false)
-  //   setApptLi(false)
-  // }
-
-  // const handleToDoLiCl = (e) => {
-  //   setApptToDoOV(false)
-  //   setUsersLi(false)
-  //   setToDoLi(true)
-  //   setApptLi(false)
-  // }
-
-  // const handleApptLiCl = (e) => {
-  //   setApptToDoOV(false)
-  //   setUsersLi(false)
-  //   setToDoLi(false)
-  //   setApptLi(true)
-  // }
+  const date = new Date();
+  const day = ('0' + date.getDate()).slice(-2);
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const year = date.getFullYear();
+  const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+    'Friday', 'Saturday']
+  const wDay = weekday[date.getDay()]
+  const nowDate = wDay + ' ' + month + ' ' + day + ' ' + year
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -209,74 +202,54 @@ export default function Dashboard() {
           {/* </IconButton> */}
         </Toolbar>
       </AppBar>
-      {/* <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        {/* <List>{mainListItems}</List> */}
-        {/*<Divider /> }
-        {/* <List>{secondaryListItems}</List> */}
-      {/*</Drawer> */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth="lg">
           <Grid container spacing={3}>
-            {/* Chart */}
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                {nowDate}
+              </Paper>
+            </Grid>
             <Grid
               item xs={12} md={6} lg={6}
               className={clsx(!apptToDoOV && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
-                {/* <Chart /> */}
+                <ApptOV />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={6} lg={6}
               className={clsx(!apptToDoOV && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
+                <ToDoOV />
               </Paper>
             </Grid>
-            <Grid item xs={12} md={6} lg={6}
+            <Grid item xs={12}
               className={clsx(!usersLi && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
+                <UsersList />
               </Paper>
             </Grid>
-            <Grid item xs={12} md={6} lg={6}
+            <Grid item xs={12}
               className={clsx(!apptLi && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
+                <Appointments />
               </Paper>
             </Grid>
-            <Grid item xs={12} md={6} lg={6}
+            <Grid item xs={12}
               className={clsx(!toDoLi && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {/* <Orders /> */}
+                <ToDos />
               </Paper>
             </Grid>
           </Grid>
           <Box pt={4}>
-            {/* <Copyright /> */}
+            <Copyright />
           </Box>
         </Container>
       </main>

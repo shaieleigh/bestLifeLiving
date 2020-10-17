@@ -14,17 +14,18 @@ import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
 import Cookies from 'js-cookie';
+import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/AssistantVirtual'
 
 export const SideNavBarList = () => {
-  const [apptToDoOV, setApptToDoOV] = React.useState(true);
-  const [usersLi, setUsersLi] = React.useState(false);
-  const [apptLi, setApptLi] = React.useState(false);
-  const [toDoLi, setToDoLi] = React.useState(false);
+  // const [apptToDoOV1, setApptToDoOV] = React.useState(true);
+  // const [usersLi2, setUsersLi] = React.useState(false);
+  // const [apptLi2, setApptLi] = React.useState(false);
+  // const [toDoLi1, setToDoLi] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
-  // const apptToDoOV = useSelector(state => state.apptToDoOV);
-  // const usersLi = useSelector(state => state.usersLi)
-  // const apptLi = useSelector(state => state.apptLi)
-  // const toDoLi = useSelector(state => state.toDoLi)
+  const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
+  const usersLi = useSelector(state => state.assistV.usersLi)
+  const apptLi = useSelector(state => state.assistV.apptLi)
+  const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
 
   const logout = async () => {
@@ -39,31 +40,35 @@ export const SideNavBarList = () => {
 
 
   const handleApptToDoOV = (e) => {
-    setApptToDoOV(true)
-    setUsersLi(false)
-    setToDoLi(false)
-    setApptLi(false)
+    e.preventDefault();
+    dispatch(setApptToDoOV(true))
+    dispatch(setUsersLi(false))
+    dispatch(setToDoLi(false))
+    dispatch(setApptLi(false))
   }
 
   const handleUsersLiCl = (e) => {
-    setApptToDoOV(false)
-    setUsersLi(true)
-    setToDoLi(false)
-    setApptLi(false)
+    e.preventDefault();
+    dispatch(setApptToDoOV(false))
+    dispatch(setUsersLi(true))
+    dispatch(setToDoLi(false))
+    dispatch(setApptLi(false))
   }
 
   const handleToDoLiCl = (e) => {
-    setApptToDoOV(false)
-    setUsersLi(false)
-    setToDoLi(true)
-    setApptLi(false)
+    e.preventDefault();
+    dispatch(setApptToDoOV(false))
+    dispatch(setUsersLi(false))
+    dispatch(setToDoLi(true))
+    dispatch(setApptLi(false))
   }
 
   const handleApptLiCl = (e) => {
-    setApptToDoOV(false)
-    setUsersLi(false)
-    setToDoLi(false)
-    setApptLi(true)
+    e.preventDefault();
+    dispatch(setApptToDoOV(false))
+    dispatch(setUsersLi(false))
+    dispatch(setToDoLi(false))
+    dispatch(setApptLi(true))
   }
 
 
@@ -73,7 +78,7 @@ export const SideNavBarList = () => {
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Daily Overview" />
       </ListItem>
       <ListItem button onClick={handleUsersLiCl}>
         <ListItemIcon>

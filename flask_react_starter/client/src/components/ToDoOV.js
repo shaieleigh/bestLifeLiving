@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export default function  ToDos () {
+export default function  ToDoOV () {
   const [toDosLi, setToDo] = useState([]);
 
   useEffect(() => {
@@ -13,15 +13,16 @@ export default function  ToDos () {
     }, []);
 
     const toDoList = toDosLi.map((todo) => {
-      return (
-
-      <p key={todo.id}>{todo.item}</p>
-      )
+      if (todo.typeId === 1) {
+        return (
+          <p key={todo.id}>{todo.item}</p>
+          )
+        }
     })
-    console.log("____Rendering To Do List____")
+    console.log("____Rendering To Do Overview List____")
     return (
         <>
-            <h1>To Do List: </h1>
+            <h1>General To Do Overview: </h1>
             {toDoList}
         </>
         );

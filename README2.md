@@ -51,3 +51,11 @@ heroku pg:reset -a bestlifeliving
 heroku run -a bestlifeliving flask db init
 then as before:
 heroku run -a bestlifeliving python -m database
+
+"As I look back on my life, I realize that
+every time I thought I was being rejected from
+something good, I was actually being redirected to
+something better." -Steve Maraboli
+
+
+

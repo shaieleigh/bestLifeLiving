@@ -15,7 +15,7 @@ export default function Appointments () {
     const appointmentList = appointmentsLi.map((aptdate) => {
       return (
         // <User key={user.id} user={user} />
-      <p>{aptdate.date}</p>
+      <p key={aptdate.id}>{aptdate.date}</p>
       )
     })
     console.log("____Rendering Appointments List____")
