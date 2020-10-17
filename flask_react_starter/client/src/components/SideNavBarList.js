@@ -16,10 +16,10 @@ import { setUser } from '../store/auth';
 import Cookies from 'js-cookie';
 
 export const SideNavBarList = () => {
-  const [apptToDoOV, setApptToDoOV] = React.useState(true);
-  const [usersLi, setUsersLi] = React.useState(false);
-  const [apptLi, setApptLi] = React.useState(false);
-  const [toDoLi, setToDoLi] = React.useState(false);
+  // const [apptToDoOV, setApptToDoOV] = React.useState(true);
+  // const [usersLi, setUsersLi] = React.useState(false);
+  // const [apptLi, setApptLi] = React.useState(false);
+  // const [toDoLi, setToDoLi] = React.useState(false);
   const dispatch = useDispatch();
 
   const logout = async () => {

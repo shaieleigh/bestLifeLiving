@@ -115,11 +115,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [apptToDoOV, setApptToDoOV] = React.useState(true);
-  const [usersLi, setUsersLi] = React.useState(false);
-  const [apptLi, setApptLi] = React.useState(false);
-  const [toDoLi, setToDoLi] = React.useState(false);
+  // const [apptToDoOV, setApptToDoOV] = React.useState(true);
+  // const [usersLi, setUsersLi] = React.useState(false);
+  // const [apptLi, setApptLi] = React.useState(false);
+  // const [toDoLi, setToDoLi] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
+  const apptToDoOV = useSelector(state => state.apptToDoOV);
+  const usersLi = useSelector(state => state.usersLi)
+  const apptLi = useSelector(state => state.apptLi)
+  const toDoLi = useSelector(state => state.toDoLi)
   const dispatch = useDispatch();
   const logout = async () => {
     await fetch('/api/users/logout', {
