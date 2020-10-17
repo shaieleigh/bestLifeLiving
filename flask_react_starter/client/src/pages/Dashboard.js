@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
-import { setUser } from '../store/auth';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,42 +20,31 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import FaceIcon from '@material-ui/icons/Face';
+import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
-// export default function Dashboard() {
-//   const currentUserId = useSelector(state => state.auth.id);
-//   const dispatch = useDispatch();
-//   const logout = async () => {
-//     await fetch('/users', {
-//       method: 'DELETE',
-//       headers: {
-//         'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-//       }
-//     });
-//     dispatch(setUser({}));
-//   }
+import { setUser } from '../store/auth';
+import { SideNavBarList } from '../components/SideNavBarList'
+import ToDos from '../components/ToDos'
+import Appointments from '../components/Appointments'
+import UsersList from '../components/UsersList';
+import ToDoOV from '../components/ToDoOV'
+import ApptOV from '../components/ApptOV'
 
-
-//   useEffect(() => {
-//     async function users() {
-//       const res = await fetch('/api/users')
-//       const data = await res.json();
-//       console.log(data)
-//     }
-//     users();
-
-
-//   })
-
-//   // if (!currentUserId) return <Redirect to='login'/>
-
-//   return (
-//     <>
-//       <h1>Dashboard</h1>
-//       <button onClick={logout}>Log out</button>
-//     </>
-//   )
-//     }
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -100,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: 'relative',
+    top: '80px',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -135,14 +124,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 340,
   },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
+  const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
+  const usersLi = useSelector(state => state.assistV.usersLi)
+  const apptLi = useSelector(state => state.assistV.apptLi)
+  const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
   const logout = async () => {
     await fetch('/api/users/logout', {
@@ -153,7 +146,7 @@ export default function Dashboard() {
     });
     dispatch(setUser({}));
   }
-
+  console.log('STATE', apptToDoOV)
 
   useEffect(() => {
     async function users() {
@@ -165,18 +158,29 @@ export default function Dashboard() {
   })
 
   if (!currentUserId) return <Redirect to='login'/>
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const date = new Date();
+  const day = ('0' + date.getDate()).slice(-2);
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const year = date.getFullYear();
+  const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+    'Friday', 'Saturday']
+  const wDay = weekday[date.getDay()]
+  const nowDate = wDay + ' ' + month + ' ' + day + ' ' + year
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -188,7 +192,7 @@ export default function Dashboard() {
           <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="textPrimary" noWrap className={classes.title}>
-            Dashboard
+            Best Life Dashboard
           </Typography>
           <button onClick={logout}>Log out</button>
           {/* <IconButton color="inherit"> */}
@@ -198,6 +202,57 @@ export default function Dashboard() {
           {/* </IconButton> */}
         </Toolbar>
       </AppBar>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg">
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                {nowDate}
+              </Paper>
+            </Grid>
+            <Grid
+              item xs={12} md={6} lg={6}
+              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                <ApptOV />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}
+              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                <ToDoOV />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}
+              className={clsx(!usersLi && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                <UsersList />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}
+              className={clsx(!apptLi && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                <Appointments />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}
+              className={clsx(!toDoLi && classes.menuButtonHidden )}
+            >
+              <Paper className={fixedHeightPaper}>
+                <ToDos />
+              </Paper>
+            </Grid>
+          </Grid>
+          <Box pt={4}>
+            <Copyright />
+          </Box>
+        </Container>
+      </main>
       <Drawer
         variant="permanent"
         classes={{
@@ -207,42 +262,17 @@ export default function Dashboard() {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon />
+            <ChevronRightIcon className={clsx(!open && classes.menuButtonHidden)} />
+          </IconButton>
+          <IconButton onClick={handleDrawerOpen}>
+            <ChevronLeftIcon className={clsx(open && classes.menuButtonHidden)} />
           </IconButton>
         </div>
         <Divider />
-        {/* <List>{mainListItems}</List> */}
+        <List><SideNavBarList/></List>
         <Divider />
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                {/* <Chart /> */}
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {/* <Orders /> */}
-              </Paper>
-            </Grid>
-          </Grid>
-          <Box pt={4}>
-            {/* <Copyright /> */}
-          </Box>
-        </Container>
-      </main>
     </div>
   );
 }

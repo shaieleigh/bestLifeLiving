@@ -1,19 +1,23 @@
 import os
 from flask import Flask, render_template, request, session
+from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
-from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_login import LoginManager
 
-from .models import db, User
+from .models import db, User, AppointmentCategory, Appointment, ToDoType, ToDo
 from .api.user_routes import user_routes
+from .api.todo_routes import todo_routes
+from .api.appointment_routes import appointment_routes
 
 from .config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(todo_routes, url_prefix='/api/todos')
+app.register_blueprint(appointment_routes, url_prefix='/api/appointments')
 db.init_app(app)
 Migrate(app, db)
 login = LoginManager(app)
