@@ -109,40 +109,31 @@ export default function  ToDos () {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [toDosLi, setToDo] = useState([]);
+  const [typesList, setTypes] = useState([]);
   const toDoLi = useSelector(state => state.assistV.toDoLi);
 
   useEffect(() => {
-        async function fetchData() {
+        async function fetchToDos() {
             const response = await fetch('/api/todos');
             const data = await response.json();
             setToDo(data.todos);
+            setTypes(data.types);
         }
-        fetchData();
+        fetchToDos();
     }, []);
 
-  const types = [null, 'To Do (General)', 'Groceries', 'High Priority', 'Low Priority', 'Extra Curricular Projects', 'Bucket List']
-  const toDoList = {}
-  toDosLi.forEach(ele => {
-    if (!toDoList[types[ele.typeId]]) {
-      toDoList[types[ele.typeId]] = []
-      toDoList[types[ele.typeId]].push(<p key={ele.id}>{ele.item}</p>)
-    } else {
-      toDoList[types[ele.typeId]].push(<p key={ele.id}>{ele.item}</p>)
-    }
 
-  })
-
-  types.shift()
-  const todos = types.map(todoCat => {
+  const todos = typesList.map(todoCat => {
+    const todosOfType = toDosLi.filter(todo => todo.typeId === todoCat.id)
 
     return (
       <Grid item xs={12} md={6} lg={6}
       className={clsx(!toDoLi && classes.menuButtonHidden )}
-      key={types.indexOf(todoCat)}
+      key={todoCat.id}
       >
         <Paper className={fixedHeightPaper}>
-          <h1>{todoCat}</h1>
-          {toDoList[todoCat]}
+          <h1>{todoCat.type}</h1>
+          {todosOfType.map(todoItem => <p>{todoItem.item}</p>)}
         </Paper>
       </Grid>
     )
@@ -155,12 +146,3 @@ export default function  ToDos () {
   )
 
 }
-
-// const userComponents = users.map((user) => <User key={user.id} user={user} />)
-//     console.log("____Rendering User List____")
-//     return (
-//         <>
-//             <h1>User List: </h1>
-//             {userComponents}
-//         </>
-//         );

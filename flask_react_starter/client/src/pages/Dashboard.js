@@ -20,10 +20,13 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 // import Badge from '@material-ui/core/Badge';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 // import FaceIcon from '@material-ui/icons/Face';
-// import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
 import { SideNavBarList } from '../components/SideNavBarList'
@@ -55,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    backgroundColor: 'teal'
   },
   toolbarIcon: {
     display: 'flex',
@@ -85,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 5,
   },
   drawerPaper: {
     position: 'relative',
@@ -127,6 +131,15 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 340,
   },
+  logoutButton: {
+    flexGrow: 2,
+    justifyContent: 'flex-end',
+    width: '5%'
+  },
+  logoutBtnIcon: {
+    color: 'white',
+  },
+
 }));
 
 export default function Dashboard() {
@@ -183,10 +196,16 @@ export default function Dashboard() {
           >
           <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="textPrimary" noWrap className={classes.title}>
+          <Typography component="h1" variant="h6" noWrap className={classes.title}>
             Best Life Dashboard
           </Typography>
-          <button onClick={logout}>Log out</button>
+          <ListItem button onClick={logout} className={classes.logoutButton}>
+            <ListItemIcon>
+              <FilterVintageIcon className={classes.logoutBtnIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Log Out" />
+          </ListItem>
+          {/* <button onClick={logout}>Log out</button> */}
           {/* <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />

@@ -63,7 +63,7 @@ class ToDoType(db.Model):
   def to_dict(self):
     return {
       'id': self.id,
-      'category': self.category
+      'type': self.type
     }
 
 class ToDo(db.Model):

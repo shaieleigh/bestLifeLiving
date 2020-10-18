@@ -22,7 +22,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Best Life Living
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,7 +32,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -43,10 +43,14 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    // marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(1, 0, 2),
+    backgroundColor: 'teal',
+  },
+  loginLink: {
+    color: 'teal'
   },
 }));
 
@@ -94,6 +98,7 @@ export default function LogIn() {
             autoComplete="email"
             autoFocus
             onChange={e => setEmail(e.target.value)}
+            className={classes.textField}
           />
           <TextField
             variant="outlined"
@@ -107,10 +112,10 @@ export default function LogIn() {
             autoComplete="current-password"
             onChange={e => setPassword(e.target.value)}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -132,19 +137,19 @@ export default function LogIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" className={classes.loginLink}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" className={classes.loginLink} >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={3}>
         <Copyright />
       </Box>
     </Container>

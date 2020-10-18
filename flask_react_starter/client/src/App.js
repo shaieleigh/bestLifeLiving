@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import Dashboard from './pages/Dashboard';
@@ -47,6 +47,7 @@ function App() {
             </Route>
             <Route path="/">
                 <h1>Landing Page</h1>
+                <NavLink to='/login' activeclass="active">Log in</NavLink>
             </Route>
         </Switch>
     </BrowserRouter>

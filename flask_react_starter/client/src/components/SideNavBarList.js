@@ -14,7 +14,7 @@ import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
 import Cookies from 'js-cookie';
-import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/AssistantVirtual'
+import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/assistantVirtual'
 
 export const SideNavBarList = () => {
   // const [apptToDoOV1, setApptToDoOV] = React.useState(true);
