@@ -1,23 +1,24 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import GroupIcon from '@material-ui/icons/Group';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+// import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/AssistantVirtual'
+// import ListSubheader from '@material-ui/core/ListSubheader';
+// import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
-import { setUser } from '../store/auth';
-import Cookies from 'js-cookie';
-import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/AssistantVirtual'
+// import { setUser } from '../store/auth';
+// import Cookies from 'js-cookie';
 
 const drawerWidth = 240;
 
@@ -106,12 +107,12 @@ const useStyles = makeStyles((theme) => ({
 export const DateBar = () => {
 
   const classes = useStyles();
-  const currentUserId = useSelector(state => state.auth.id);
-  const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
+  // const currentUserId = useSelector(state => state.auth.id);
+  // const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
-  const apptLi = useSelector(state => state.assistV.apptLi)
-  const toDoLi = useSelector(state => state.assistV.toDoLi)
-  const dispatch = useDispatch();
+  // const apptLi = useSelector(state => state.assistV.apptLi)
+  // const toDoLi = useSelector(state => state.assistV.toDoLi)
+  // const dispatch = useDispatch();
 
   const date = new Date();
   const day = ('0' + date.getDate()).slice(-2);
@@ -122,48 +123,48 @@ export const DateBar = () => {
   const wDay = weekday[date.getDay()]
   const nowDate = wDay + ' ' + month + ' ' + day + ' ' + year
 
-  const logout = async () => {
-    await fetch('/api/users/logout', {
-      method: 'DELETE',
-      headers: {
-        'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-      }
-    });
-    dispatch(setUser({}));
-    }
+  // const logout = async () => {
+  //   await fetch('/api/users/logout', {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
+  //     }
+  //   });
+  //   dispatch(setUser({}));
+  //   }
 
 
-  const handleApptToDoOV = (e) => {
-    e.preventDefault();
-    dispatch(setApptToDoOV(true))
-    dispatch(setUsersLi(false))
-    dispatch(setToDoLi(false))
-    dispatch(setApptLi(false))
-  }
+  // const handleApptToDoOV = (e) => {
+  //   e.preventDefault();
+  //   dispatch(setApptToDoOV(true))
+  //   dispatch(setUsersLi(false))
+  //   dispatch(setToDoLi(false))
+  //   dispatch(setApptLi(false))
+  // }
 
-  const handleUsersLiCl = (e) => {
-    e.preventDefault();
-    dispatch(setApptToDoOV(false))
-    dispatch(setUsersLi(true))
-    dispatch(setToDoLi(false))
-    dispatch(setApptLi(false))
-  }
+  // const handleUsersLiCl = (e) => {
+  //   e.preventDefault();
+  //   dispatch(setApptToDoOV(false))
+  //   dispatch(setUsersLi(true))
+  //   dispatch(setToDoLi(false))
+  //   dispatch(setApptLi(false))
+  // }
 
-  const handleToDoLiCl = (e) => {
-    e.preventDefault();
-    dispatch(setApptToDoOV(false))
-    dispatch(setUsersLi(false))
-    dispatch(setToDoLi(true))
-    dispatch(setApptLi(false))
-  }
+  // const handleToDoLiCl = (e) => {
+  //   e.preventDefault();
+  //   dispatch(setApptToDoOV(false))
+  //   dispatch(setUsersLi(false))
+  //   dispatch(setToDoLi(true))
+  //   dispatch(setApptLi(false))
+  // }
 
-  const handleApptLiCl = (e) => {
-    e.preventDefault();
-    dispatch(setApptToDoOV(false))
-    dispatch(setUsersLi(false))
-    dispatch(setToDoLi(false))
-    dispatch(setApptLi(true))
-  }
+  // const handleApptLiCl = (e) => {
+  //   e.preventDefault();
+  //   dispatch(setApptToDoOV(false))
+  //   dispatch(setUsersLi(false))
+  //   dispatch(setToDoLi(false))
+  //   dispatch(setApptLi(true))
+  // }
 
 
   return (

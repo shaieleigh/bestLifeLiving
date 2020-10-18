@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
@@ -13,7 +13,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -21,9 +20,10 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import FaceIcon from '@material-ui/icons/Face';
-import FilterVintageIcon from '@material-ui/icons/FilterVintage';
+// import Badge from '@material-ui/core/Badge';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
+// import FaceIcon from '@material-ui/icons/Face';
+// import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
 import { SideNavBarList } from '../components/SideNavBarList'
@@ -136,7 +136,7 @@ export default function Dashboard() {
   const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
   const apptLi = useSelector(state => state.assistV.apptLi)
-  const toDoLi = useSelector(state => state.assistV.toDoLi)
+  // const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
   const logout = async () => {
     await fetch('/api/users/logout', {
@@ -148,13 +148,13 @@ export default function Dashboard() {
     dispatch(setUser({}));
   }
 
-  useEffect(() => {
-    async function users() {
-      const res = await fetch('/api/users')
-      const data = await res.json();
-    }
-    users();
-  })
+  // useEffect(() => {
+  //   async function users() {
+  //     const res = await fetch('/api/users')
+  //     const data = await res.json();
+  //   }
+  //   users();
+  // })
 
   if (!currentUserId) return <Redirect to='login'/>
 

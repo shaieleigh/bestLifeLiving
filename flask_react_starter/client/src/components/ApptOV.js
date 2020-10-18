@@ -13,11 +13,11 @@ export default function  AppointmentOV () {
     }, []);
 
     const appointmentList = appointmentsLi.map((appointment) => {
-      const date = new Date();
-      const day = ('0' + date.getDate()).slice(-2);
-      const month = ('0' + (date.getMonth() + 1)).slice(-2);
-      const year = date.getFullYear();
-      const nowDate = month + ' ' + day + ' ' + year
+      // const date = new Date();
+      // const day = ('0' + date.getDate()).slice(-2);
+      // const month = ('0' + (date.getMonth() + 1)).slice(-2);
+      // const year = date.getFullYear();
+      // const nowDate = month + ' ' + day + ' ' + year
       const apptDate = appointment.date.slice(2)
       const demoDate = '10 30 2020'
       if (demoDate === apptDate) {
