@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,13 +32,14 @@ import Appointments from '../components/Appointments'
 import UsersList from '../components/UsersList';
 import ToDoOV from '../components/ToDoOV'
 import ApptOV from '../components/ApptOV'
+import { DateBar } from '../components/DateBar'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Best Life Living
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -146,13 +147,11 @@ export default function Dashboard() {
     });
     dispatch(setUser({}));
   }
-  console.log('STATE', apptToDoOV)
 
   useEffect(() => {
     async function users() {
       const res = await fetch('/api/users')
       const data = await res.json();
-      // console.log(data)
     }
     users();
   })
@@ -166,14 +165,7 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  const date = new Date();
-  const day = ('0' + date.getDate()).slice(-2);
-  const month = ('0' + (date.getMonth() + 1)).slice(-2);
-  const year = date.getFullYear();
-  const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-    'Friday', 'Saturday']
-  const wDay = weekday[date.getDay()]
-  const nowDate = wDay + ' ' + month + ' ' + day + ' ' + year
+
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -195,22 +187,23 @@ export default function Dashboard() {
             Best Life Dashboard
           </Typography>
           <button onClick={logout}>Log out</button>
-          {/* <IconButton color="inherit"> */}
-            {/* <Badge badgeContent={4} color="secondary"> */}
-              {/* <NotificationsIcon /> */}
-            {/* </Badge> */}
-          {/* </IconButton> */}
+          {/* <IconButton color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+           </IconButton> */}
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg">
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <DateBar />
+            {/* <Grid item xs={12}>
               <Paper className={classes.paper}>
                 {nowDate}
               </Paper>
-            </Grid>
+            </Grid> */}
             <Grid
               item xs={12} md={6} lg={6}
               className={clsx(!apptToDoOV && classes.menuButtonHidden )}
@@ -240,13 +233,14 @@ export default function Dashboard() {
                 <Appointments />
               </Paper>
             </Grid>
-            <Grid item xs={12}
+            <ToDos />
+            {/* <Grid item xs={12} md={6} lg={6}
               className={clsx(!toDoLi && classes.menuButtonHidden )}
             >
               <Paper className={fixedHeightPaper}>
                 <ToDos />
               </Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Box pt={4}>
             <Copyright />

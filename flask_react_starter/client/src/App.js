@@ -10,7 +10,7 @@ import ToDos from './components/ToDos'
 
 
 function App() {
-  console.log("____Rendering app_____")
+//   console.log("____Rendering app_____")
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ function App() {
                 <li><NavLink to="/appointments" activeclass="active">Appointments</NavLink></li>
                 <li><NavLink to="/todos" activeclass="active">To Dos</NavLink></li>
             </ul> */}
-          
+
         </nav>
         <Switch>
             <Route path='/dashboard'>

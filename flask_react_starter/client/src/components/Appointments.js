@@ -18,15 +18,15 @@ export default function Appointments () {
     'Friday', 'Saturday']
     const wDay = weekday[apt.date[0]]
       return (
-        <>
+        <div key={apt.id}>
           <strong>Appointment:</strong> {apt.notes}<br />
           <strong>Date:</strong> {wDay} {date}<br />
           <strong>Time:</strong> {apt.time}<br />
           <hr />
-        </>
+        </div>
       )
     })
-    console.log("____Rendering Appointments List____")
+    // console.log("____Rendering Appointments List____")
     return (
         <>
             <h1>Appointments List: </h1>
