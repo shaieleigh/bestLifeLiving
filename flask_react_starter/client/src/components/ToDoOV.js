@@ -13,13 +13,13 @@ export default function  ToDoOV () {
     }, []);
 
     const toDoList = toDosLi.map((todo) => {
-      if (todo.typeId === 1) {
-        return (
-          <p key={todo.id}>{todo.item}</p>
-          )
-        }
+      if (!todo.typeId === 1) return null;
+      return (
+        <p key={todo.id}>{todo.item}</p>
+      )
+
     })
-   
+
     return (
         <>
             <h1>General To Do Overview: </h1>

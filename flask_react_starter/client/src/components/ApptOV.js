@@ -25,7 +25,9 @@ export default function  AppointmentOV () {
         return (
           <p key={appointment.id}>{appointment.notes} {appointment.time}</p>
           )
-        }
+      } else {
+        return null;
+      }
     })
     // console.log("____Rendering Appointment Overview List____")
     return (
