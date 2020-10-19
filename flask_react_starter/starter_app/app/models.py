@@ -75,7 +75,7 @@ class ToDo(db.Model):
   item = db.Column(db.String(255), nullable=False)
   dueDate = db.Column(db.Date, nullable=True)
   isComplete = db.Column(db.Boolean, default=False, nullable=False)
-  types = db.relationship('ToDoType', backref='toDo', lazy=True)
+  types = db.relationship('ToDoType', backref='toDos', lazy=True)
 
   def to_dict(self):
     return {

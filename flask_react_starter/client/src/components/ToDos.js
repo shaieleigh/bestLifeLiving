@@ -133,7 +133,7 @@ export default function  ToDos () {
       >
         <Paper className={fixedHeightPaper}>
           <h1>{todoCat.type}</h1>
-          {todosOfType.map(todoItem => <p>{todoItem.item}</p>)}
+          {todosOfType.map(todoItem => <p key={todoItem.id} >{todoItem.item}</p>)}
         </Paper>
       </Grid>
     )

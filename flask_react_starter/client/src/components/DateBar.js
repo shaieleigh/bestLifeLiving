@@ -100,20 +100,26 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 340,
   },
+  create: {
+    color: 'purple',
+  },
+  edit: {
+    color: 'blue',
+  },
+  delete: {
+    color: 'red',
+  },
+  connectedF: {
+    color: 'orange',
+  },
 
 }));
 
 
 export const DateBar = () => {
-
   const classes = useStyles();
-  // const currentUserId = useSelector(state => state.auth.id);
-  // const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
-  // const apptLi = useSelector(state => state.assistV.apptLi)
-  // const toDoLi = useSelector(state => state.assistV.toDoLi)
-  // const dispatch = useDispatch();
-
+  const showCreateModal = useSelector(state => state.assistV.createModal)
   const date = new Date();
   const day = ('0' + date.getDate()).slice(-2);
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -121,51 +127,15 @@ export const DateBar = () => {
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
     'Friday', 'Saturday']
   const wDay = weekday[date.getDay()]
-  const nowDate = wDay + ' ' + month + ' ' + day + ' ' + year
+  const nowDate = wDay + ' ' + month + '-' + day + '-' + year
 
-  // const logout = async () => {
-  //   await fetch('/api/users/logout', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-  //     }
-  //   });
-  //   dispatch(setUser({}));
-  //   }
-
-
-  // const handleApptToDoOV = (e) => {
-  //   e.preventDefault();
-  //   dispatch(setApptToDoOV(true))
-  //   dispatch(setUsersLi(false))
-  //   dispatch(setToDoLi(false))
-  //   dispatch(setApptLi(false))
-  // }
-
-  // const handleUsersLiCl = (e) => {
-  //   e.preventDefault();
-  //   dispatch(setApptToDoOV(false))
-  //   dispatch(setUsersLi(true))
-  //   dispatch(setToDoLi(false))
-  //   dispatch(setApptLi(false))
-  // }
-
-  // const handleToDoLiCl = (e) => {
-  //   e.preventDefault();
-  //   dispatch(setApptToDoOV(false))
-  //   dispatch(setUsersLi(false))
-  //   dispatch(setToDoLi(true))
-  //   dispatch(setApptLi(false))
-  // }
-
-  // const handleApptLiCl = (e) => {
-  //   e.preventDefault();
-  //   dispatch(setApptToDoOV(false))
-  //   dispatch(setUsersLi(false))
-  //   dispatch(setToDoLi(false))
-  //   dispatch(setApptLi(true))
-  // }
-
+  const handleShowCreateModal = () => {
+    if(!showCreateModal) {
+      showCreateModal = true;
+    } else {
+      showCreateModal = false;
+    }
+  }
 
   return (
     <Grid item xs={12}>
@@ -174,32 +144,32 @@ export const DateBar = () => {
             {nowDate}
         </ListItem>
         <ListItem button
-          className={clsx(usersLi && classes.menuButtonHidden)}>
+          className={clsx(usersLi && classes.menuButtonHidden)} onClick={handleShowCreateModal} >
           <ListItemIcon >
-            <AddIcon />
+            <AddIcon className={classes.create} />
           </ListItemIcon>
-          <ListItemText primary="Create New" />
+          <ListItemText primary="Create" className={classes.create} />
         </ListItem>
         <ListItem button
           className={clsx(usersLi && classes.menuButtonHidden)}>
           <ListItemIcon>
-            <EditIcon />
+            <EditIcon className={classes.edit} />
           </ListItemIcon>
-          <ListItemText primary=" Edit" />
+          <ListItemText primary=" Edit" className={classes.edit} />
         </ListItem>
         <ListItem button
             className={clsx(usersLi && classes.menuButtonHidden)}>
           <ListItemIcon>
-            <DeleteIcon />
+            <DeleteIcon className={classes.delete} />
           </ListItemIcon>
-          <ListItemText primary="Delete" />
+          <ListItemText primary="Delete" className={classes.delete} />
         </ListItem>
         <ListItem button
             className={clsx(!usersLi && classes.menuButtonHidden)}>
           <ListItemIcon>
-            <GroupIcon />
+            <GroupIcon className={classes.connectedF} />
           </ListItemIcon>
-          <ListItemText primary="Connected Friends" />
+          <ListItemText primary="Connected Friends" className={classes.connectedF} />
         </ListItem>
       </Paper>
     </Grid>

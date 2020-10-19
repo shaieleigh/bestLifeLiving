@@ -2,6 +2,7 @@ const SET_APPT_TODO = 'SET_APPT_TODO';
 const SET_USERS_LI = 'SET_USERS_LI';
 const SET_APPT_LI = 'SET_APPT_LI';
 const SET_TODO_LI = 'SET_TODO_LI';
+const SET_CREATE_MODAL = 'SET_CREATE_MODAL'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -30,11 +31,19 @@ export const setToDoLi = (bool) => {
     }
 }
 
+export const setShowCreateModal = (bool) => {
+  return {
+    type: SET_CREATE_MODAL,
+    createModal: bool
+  }
+}
+
 const initState = {
   apptToDoOV: true,
   usersLi: false,
   apptLi: false,
-  toDoLi: false
+  toDoLi: false,
+  createModal: false,
 }
 
 export default function assistVReducer(state=initState, action) {
@@ -50,6 +59,9 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case SET_TODO_LI:
         state['toDoLi'] = action.toDoLi;
+        return state;
+      case SET_CREATE_MODAL:
+        state['createModal'] = action.createModal;
         return state;
       default:
         return state;

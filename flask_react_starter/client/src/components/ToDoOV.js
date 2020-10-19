@@ -11,20 +11,18 @@ export default function  ToDoOV () {
         }
         fetchData();
     }, []);
-
-    const toDoList = toDosLi.map((todo) => {
-      if (!todo.typeId === 1) return null;
-      return (
-        <p key={todo.id}>{todo.item}</p>
-      )
-
-    })
-
-    return (
-        <>
-            <h1>General To Do Overview: </h1>
-            {toDoList}
-        </>
-        );
+  
+  const toDoLists = toDosLi.filter((todo) => todo.typeId === 1 )
+  const toDoList = toDoLists.map(todo => {
+        return (
+          <p key={todo.id}>{todo.item}</p>
+        )
+     })
+  return (
+      <>
+          <h1>General To Do Overview: </h1>
+          {toDoList}
+      </>
+      );
 
 }

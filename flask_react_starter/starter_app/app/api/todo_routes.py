@@ -10,9 +10,10 @@ def index():
   # todos = ToDo.query.options(joinedload('types'))
   todos = ToDo.query.join(ToDoType).all()
   todosList = [todo.to_dict() for todo in todos]
-  todosTypes = [ todo.types.to_dict() for todo in todos]
-  todosTypes2 = list({value['id']:value for value in todosTypes}.values())
+  todosTypesId = [todo.types.to_dict() for todo in todos]
+  todosTypesIds = list({value['id']:value for value in todosTypesId}.values())
+  typesList = ToDoType.query.all()
+  typesList2 = [typeList.to_dict() for typeList in typesList]
 
 
-
-  return { 'todos': todosList, 'types': todosTypes2 }
+  return { 'todos': todosList, 'types': todosTypesIds, 'types2': typesList2 }

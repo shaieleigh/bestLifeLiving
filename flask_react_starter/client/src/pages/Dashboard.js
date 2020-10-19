@@ -36,6 +36,7 @@ import UsersList from '../components/UsersList';
 import ToDoOV from '../components/ToDoOV'
 import ApptOV from '../components/ApptOV'
 import { DateBar } from '../components/DateBar'
+import CreateModal from '../components/CreateModal'
 
 function Copyright() {
   return (
@@ -138,6 +139,11 @@ const useStyles = makeStyles((theme) => ({
   },
   logoutBtnIcon: {
     color: 'white',
+    textAlign: 'center',
+  },
+  logoutBtnText: {
+    color: 'white',
+    textAlign: 'center',
   },
 
 }));
@@ -146,6 +152,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
+  const showCreateModal = useSelector(state => state.assistV.createModal)
   const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
   const apptLi = useSelector(state => state.assistV.apptLi)
@@ -161,15 +168,9 @@ export default function Dashboard() {
     dispatch(setUser({}));
   }
 
-  // useEffect(() => {
-  //   async function users() {
-  //     const res = await fetch('/api/users')
-  //     const data = await res.json();
-  //   }
-  //   users();
-  // })
 
-  if (!currentUserId) return <Redirect to='login'/>
+
+  // if (!currentUserId) return <Redirect to='login'/>
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -177,115 +178,126 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const handleShowCreateModal = () => {
+    if(!showCreateModal) {
+      showCreateModal = true;
+    } else {
+      showCreateModal = false;
+    }
+  }
 
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-          <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" noWrap className={classes.title}>
-            Best Life Dashboard
-          </Typography>
-          <ListItem button onClick={logout} className={classes.logoutButton}>
-            <ListItemIcon>
-              <FilterVintageIcon className={classes.logoutBtnIcon} />
-            </ListItemIcon>
-            <ListItemText primary="Log Out" />
-          </ListItem>
-          {/* <button onClick={logout}>Log out</button> */}
-          {/* <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-           </IconButton> */}
-        </Toolbar>
-      </AppBar>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg">
-          <Grid container spacing={3}>
-            <DateBar />
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {nowDate}
-              </Paper>
-            </Grid> */}
-            <Grid
-              item xs={12} md={6} lg={6}
-              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+    <>
+      <div className={classes.root} onClick={handlShowCreateModal}>
+        <CssBaseline />
+        <AppBar position="absolute" >
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
             >
-              <Paper className={fixedHeightPaper}>
-                <ApptOV />
-              </Paper>
+            <MenuIcon />
+            </IconButton>
+            <Typography component="h1" variant="h6" noWrap className={classes.title}>
+              Best Life Dashboard
+            </Typography>
+            <ListItem button onClick={logout} className={classes.logoutButton}>
+              <ListItemIcon>
+                <FilterVintageIcon className={classes.logoutBtnIcon} />
+              </ListItemIcon>
+              <ListItemText primary="Log Out" className={classes.logoutBtnText} />
+            </ListItem>
+            {/* <button onClick={logout}>Log out</button> */}
+            {/* <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+             </IconButton> */}
+          </Toolbar>
+        </AppBar>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg">
+            <Grid container spacing={3}>
+              <DateBar />
+              {/* <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  {nowDate}
+                </Paper>
+              </Grid> */}
+              <Grid
+                item xs={12} md={6} lg={6}
+                className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+              >
+                <Paper className={fixedHeightPaper}>
+                  <ApptOV />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6} lg={6}
+                className={clsx(!apptToDoOV && classes.menuButtonHidden )}
+              >
+                <Paper className={fixedHeightPaper}>
+                  <ToDoOV />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}
+                className={clsx(!usersLi && classes.menuButtonHidden )}
+              >
+                <Paper className={fixedHeightPaper}>
+                  <UsersList />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}
+                className={clsx(!apptLi && classes.menuButtonHidden )}
+              >
+                <Paper className={fixedHeightPaper}>
+                  <Appointments />
+                </Paper>
+              </Grid>
+              <ToDos />
+              {/* <Grid item xs={12} md={6} lg={6}
+                className={clsx(!toDoLi && classes.menuButtonHidden )}
+              >
+                <Paper className={fixedHeightPaper}>
+                  <ToDos />
+                </Paper>
+              </Grid> */}
             </Grid>
-            <Grid item xs={12} md={6} lg={6}
-              className={clsx(!apptToDoOV && classes.menuButtonHidden )}
-            >
-              <Paper className={fixedHeightPaper}>
-                <ToDoOV />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}
-              className={clsx(!usersLi && classes.menuButtonHidden )}
-            >
-              <Paper className={fixedHeightPaper}>
-                <UsersList />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}
-              className={clsx(!apptLi && classes.menuButtonHidden )}
-            >
-              <Paper className={fixedHeightPaper}>
-                <Appointments />
-              </Paper>
-            </Grid>
-            <ToDos />
-            {/* <Grid item xs={12} md={6} lg={6}
-              className={clsx(!toDoLi && classes.menuButtonHidden )}
-            >
-              <Paper className={fixedHeightPaper}>
-                <ToDos />
-              </Paper>
-            </Grid> */}
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon className={clsx(!open && classes.menuButtonHidden)} />
-          </IconButton>
-          <IconButton onClick={handleDrawerOpen}>
-            <ChevronLeftIcon className={clsx(open && classes.menuButtonHidden)} />
-          </IconButton>
-        </div>
-        <Divider />
-        <List><SideNavBarList/></List>
-        <Divider />
-        {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
-    </div>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronRightIcon className={clsx(!open && classes.menuButtonHidden)} />
+            </IconButton>
+            <IconButton onClick={handleDrawerOpen}>
+              <ChevronLeftIcon className={clsx(open && classes.menuButtonHidden)} />
+            </IconButton>
+          </div>
+          <Divider />
+          <List><SideNavBarList/></List>
+          <Divider />
+          {/* <List>{secondaryListItems}</List> */}
+        </Drawer>
+      </div>
+      {showCreateModal ? <CreateModal /> : null}
+      {showEditModal ? <EditModal /> : null}
+      {showCreateModal ? <DeleteModal /> : null}
+    </>
   );
 }
