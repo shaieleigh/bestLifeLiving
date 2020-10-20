@@ -1,7 +1,7 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import auth from './auth';
-import assistV from './AssistantVirtual'
+import assistV from './assistantVirtual'
 
 const rootReducer = combineReducers({
   auth,

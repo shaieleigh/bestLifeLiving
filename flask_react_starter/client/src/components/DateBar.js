@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -12,13 +12,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import GroupIcon from '@material-ui/icons/Group';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-// import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/AssistantVirtual'
+import { setShowCreateModal, setShowEditModal, setShowDeleteModal } from '../store/assistantVirtual'
 // import ListSubheader from '@material-ui/core/ListSubheader';
 // import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
-// import { setUser } from '../store/auth';
-// import Cookies from 'js-cookie';
 
 const drawerWidth = 240;
 
@@ -118,8 +116,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const DateBar = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const usersLi = useSelector(state => state.assistV.usersLi)
   const showCreateModal = useSelector(state => state.assistV.createModal)
+  const showDeleteModal = useSelector(state => state.assistV.deleteModal)
+  const showEditModal = useSelector(state => state.assistV.editModal)
   const date = new Date();
   const day = ('0' + date.getDate()).slice(-2);
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -131,9 +132,10 @@ export const DateBar = () => {
 
   const handleShowCreateModal = () => {
     if(!showCreateModal) {
-      showCreateModal = true;
+      dispatch(setShowCreateModal(true))
     } else {
-      showCreateModal = false;
+      dispatch(setShowCreateModal(false))
+
     }
   }
 

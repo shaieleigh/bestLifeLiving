@@ -37,6 +37,8 @@ import ToDoOV from '../components/ToDoOV'
 import ApptOV from '../components/ApptOV'
 import { DateBar } from '../components/DateBar'
 import CreateModal from '../components/CreateModal'
+import DeleteModal from '../components/DeleteModal'
+import EditModal from '../components/EditModal'
 
 function Copyright() {
   return (
@@ -153,6 +155,8 @@ export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
   const currentUserId = useSelector(state => state.auth.id);
   const showCreateModal = useSelector(state => state.assistV.createModal)
+  const showEditModal = useSelector(state => state.assistV.editModal)
+  const showDeleteModal = useSelector(state => state.assistV.deleteModal)
   const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
   const apptLi = useSelector(state => state.assistV.apptLi)
@@ -170,7 +174,7 @@ export default function Dashboard() {
 
 
 
-  // if (!currentUserId) return <Redirect to='login'/>
+  if (!currentUserId) return <Redirect to='login'/>
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -191,7 +195,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className={classes.root} onClick={handlShowCreateModal}>
+      <div className={classes.root}>
         <CssBaseline />
         <AppBar position="absolute" >
           <Toolbar className={classes.toolbar}>
@@ -297,7 +301,7 @@ export default function Dashboard() {
       </div>
       {showCreateModal ? <CreateModal /> : null}
       {showEditModal ? <EditModal /> : null}
-      {showCreateModal ? <DeleteModal /> : null}
+      {showDeleteModal ? <DeleteModal /> : null}
     </>
   );
 }
