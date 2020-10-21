@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(),
     display: 'flex',
     overflow: 'auto',
-    // flexDirection: 'column',
+    backgroundColor: 'rgba(255,255,255, .9)',
   },
   fixedHeight: {
     height: 340,
@@ -105,10 +105,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'blue',
   },
   delete: {
-    color: 'red',
+    color: 'crimson',
   },
   connectedF: {
-    color: 'orange',
+    color: 'darkorange',
   },
 
 }));

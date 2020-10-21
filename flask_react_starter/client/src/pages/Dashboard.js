@@ -24,9 +24,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
-// import Badge from '@material-ui/core/Badge';
-// import NotificationsIcon from '@material-ui/icons/Notifications';
-// import FaceIcon from '@material-ui/icons/Face';
 
 import { setUser } from '../store/auth';
 import { setShowCreateModal, setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
@@ -59,10 +56,13 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    backgroundImage: 'repeating-radial-gradient(rgba(255, 0, 0, .8), rgba(255, 165, 0, .8), rgba(255, 255, 0, .8), rgba(0, 128, 0, .8), rgba(0, 0, 255, .8), rgba(75, 0, 130, .8), rgba(238, 138, 238, .8) 10%)',
+    height: '100%',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    backgroundColor: 'teal'
+    backgroundColor: 'rgba(0, 128, 128, .8)',
+
   },
   toolbarIcon: {
     display: 'flex',
@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+  },
+  heading: {
+    backgroundColor: 'rgba(255,255,255, .7)',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -100,10 +103,12 @@ const useStyles = makeStyles((theme) => ({
     top: '80px',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    height: '80vh',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    backgroundColor: 'rgba(255,255,255, .9)',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -131,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    backgroundColor: 'rgba(255,255,255, .9)',
   },
   fixedHeight: {
     height: 310,
@@ -197,14 +203,13 @@ export default function Dashboard() {
     }
   }
 
-
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <>
       <div className={classes.root} onClick={handleHideModal}>
         <CssBaseline />
-        <AppBar position="absolute" >
+        <AppBar position="absolute" className={classes.heading}>
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
@@ -215,7 +220,8 @@ export default function Dashboard() {
             >
             <MenuIcon />
             </IconButton>
-            <Typography component="h1" variant="h6" noWrap className={classes.title}>
+            <Typography component="h1" variant="h6" noWrap
+              className={classes.title}>
               Demo's Best Life Dashboard
             </Typography>
             <ListItem button onClick={logout} className={classes.logoutButton}>
@@ -297,7 +303,7 @@ export default function Dashboard() {
           </div>
           <Divider />
           <List><SideNavBarList/></List>
-          <Divider />
+          {/* <Divider /> */}
           {/* <List>{secondaryListItems}</List> */}
         </Drawer>
       </div>

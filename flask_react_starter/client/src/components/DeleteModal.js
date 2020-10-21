@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
-    // marginLeft: theme.spacing(3),
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -85,6 +84,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 'auto',
   },
   centerButton: {
     display: 'flex',

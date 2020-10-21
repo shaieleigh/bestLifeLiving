@@ -5,13 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function CreateNewAppt() {
+export default function EditAppt() {
   return (
     <React.Fragment>
       {/* <Typography variant="h6" gutterBottom>
         Edit Appointment
       </Typography> */}
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
         <Grid item xs={12} sm={6}>
           <TextField
             required

@@ -61,10 +61,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      // marginTop: theme.spacing(6),
-      // marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
+
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
@@ -75,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
-    // marginLeft: theme.spacing(5),
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -83,11 +81,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
-    // right: '25%',
+
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    width: 'auto'
+    width: 'auto',
+
   },
   centerButton: {
     display: 'flex',
@@ -160,7 +159,7 @@ export default function CreateModal() {
                 onClick={handleNext}
                 className={classes.button}
                 >
-                To Do
+                To Do Thang
               </Button>
             </div>
 

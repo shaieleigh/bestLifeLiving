@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,24 +9,33 @@ import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
-// import ListSubheader from '@material-ui/core/ListSubheader';
-// import PersonIcon from '@material-ui/icons/Person';
-// import LayersIcon from '@material-ui/icons/Layers';
 
 import { setUser } from '../store/auth';
 import Cookies from 'js-cookie';
 import { setApptToDoOV, setUsersLi, setApptLi, setToDoLi } from '../store/assistantVirtual'
 
+const useStyles = makeStyles((theme) => ({
+  dashbrdIcon: {
+    color: 'teal'
+  },
+  usersIcon: {
+    color: 'mediumblue'
+  },
+  apptIcon: {
+    color: 'mediumvioletred'
+  },
+  toDoIcon: {
+    color: 'darkmagenta'
+  },
+  logOutIcon: {
+    color: 'indigo'
+  },
+
+}));
+
+
 export const SideNavBarList = () => {
-  // const [apptToDoOV1, setApptToDoOV] = React.useState(true);
-  // const [usersLi2, setUsersLi] = React.useState(false);
-  // const [apptLi2, setApptLi] = React.useState(false);
-  // const [toDoLi1, setToDoLi] = React.useState(false);
-  // const currentUserId = useSelector(state => state.auth.id);
-  // const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
-  // const usersLi = useSelector(state => state.assistV.usersLi)
-  // const apptLi = useSelector(state => state.assistV.apptLi)
-  // const toDoLi = useSelector(state => state.assistV.toDoLi)
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const logout = async () => {
@@ -74,33 +84,33 @@ export const SideNavBarList = () => {
 
   return (
     <div>
-      <ListItem button onClick={handleApptToDoOV}>
+      <ListItem button onClick={handleApptToDoOV} className={classes.dashbrdIcon}>
         <ListItemIcon>
-          <DashboardIcon />
+          <DashboardIcon className={classes.dashbrdIcon} />
         </ListItemIcon>
         <ListItemText primary="Daily Overview" />
       </ListItem>
-      <ListItem button onClick={handleUsersLiCl}>
+      <ListItem button onClick={handleUsersLiCl} className={classes.usersIcon}>
         <ListItemIcon>
-          <PeopleIcon />
+          <PeopleIcon className={classes.usersIcon}/>
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItem>
-      <ListItem button onClick={handleApptLiCl}>
+      <ListItem button onClick={handleApptLiCl} className={classes.apptIcon}>
         <ListItemIcon>
-          <CalendarTodayIcon />
+          <CalendarTodayIcon className={classes.apptIcon}/>
         </ListItemIcon>
         <ListItemText primary="Appointments" />
       </ListItem>
-      <ListItem button onClick={handleToDoLiCl}>
+      <ListItem button onClick={handleToDoLiCl} className={classes.toDoIcon}>
         <ListItemIcon>
-          <AssignmentIcon />
+          <AssignmentIcon className={classes.toDoIcon} />
         </ListItemIcon>
         <ListItemText primary="To Dos" />
       </ListItem>
-      <ListItem button onClick={logout}>
+      <ListItem button onClick={logout} className={classes.logOutIcon}>
         <ListItemIcon>
-          <FilterVintageIcon />
+          <FilterVintageIcon className={classes.logOutIcon}/>
         </ListItemIcon>
         <ListItemText primary="Log Out" />
       </ListItem>
