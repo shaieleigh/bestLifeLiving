@@ -29,6 +29,7 @@ import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 // import FaceIcon from '@material-ui/icons/Face';
 
 import { setUser } from '../store/auth';
+import { setShowCreateModal, setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
 import { SideNavBarList } from '../components/SideNavBarList'
 import ToDos from '../components/ToDos'
 import Appointments from '../components/Appointments'
@@ -182,11 +183,17 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const handleShowCreateModal = () => {
-    if(!showCreateModal) {
-      showCreateModal = true;
+ 
+
+  const handleHideModal = (e) => {
+    if(showCreateModal) {
+      dispatch(setShowCreateModal(false));
+    } else if (showEditModal) {
+      dispatch(setShowEditModal(false));
+    } else if (showDeleteModal) {
+      dispatch(setShowDeleteModal(false));
     } else {
-      showCreateModal = false;
+      return null;
     }
   }
 
@@ -195,7 +202,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.root} onClick={handleHideModal}>
         <CssBaseline />
         <AppBar position="absolute" >
           <Toolbar className={classes.toolbar}>

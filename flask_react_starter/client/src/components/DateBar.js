@@ -131,13 +131,20 @@ export const DateBar = () => {
   const nowDate = wDay + ' ' + month + '-' + day + '-' + year
 
   const handleShowCreateModal = () => {
-    if(!showCreateModal) {
       dispatch(setShowCreateModal(true))
-    } else {
-      dispatch(setShowCreateModal(false))
-
-    }
   }
+
+  const handleShowEditModal = () => {
+      dispatch(setShowEditModal(true))
+
+  }
+
+  const handleShowDeleteModal = () => {
+      dispatch(setShowDeleteModal(true))
+  }
+
+
+
 
   return (
     <Grid item xs={12}>
@@ -146,32 +153,37 @@ export const DateBar = () => {
             {nowDate}
         </ListItem>
         <ListItem button
-          className={clsx(usersLi && classes.menuButtonHidden)} onClick={handleShowCreateModal} >
+          className={clsx(usersLi && classes.menuButtonHidden)}
+          onClick={handleShowCreateModal} >
           <ListItemIcon >
             <AddIcon className={classes.create} />
           </ListItemIcon>
           <ListItemText primary="Create" className={classes.create} />
         </ListItem>
         <ListItem button
-          className={clsx(usersLi && classes.menuButtonHidden)}>
+          className={clsx(usersLi && classes.menuButtonHidden)}
+          onClick={handleShowEditModal}>
           <ListItemIcon>
             <EditIcon className={classes.edit} />
           </ListItemIcon>
           <ListItemText primary=" Edit" className={classes.edit} />
         </ListItem>
         <ListItem button
-            className={clsx(usersLi && classes.menuButtonHidden)}>
+            className={clsx(usersLi && classes.menuButtonHidden)}
+            onClick={handleShowDeleteModal}>
           <ListItemIcon>
             <DeleteIcon className={classes.delete} />
           </ListItemIcon>
           <ListItemText primary="Delete" className={classes.delete} />
         </ListItem>
         <ListItem button
-            className={clsx(!usersLi && classes.menuButtonHidden)}>
+            className={clsx(!usersLi && classes.menuButtonHidden)}
+          >
           <ListItemIcon>
             <GroupIcon className={classes.connectedF} />
           </ListItemIcon>
-          <ListItemText primary="Connected Friends" className={classes.connectedF} />
+          <ListItemText primary="Connected Friends"
+            className={classes.connectedF} />
         </ListItem>
       </Paper>
     </Grid>

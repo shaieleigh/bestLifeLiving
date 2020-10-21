@@ -89,7 +89,17 @@ function getStepContent(step) {
   }
 }
 
-export default function Checkout() {
+const handleSubmitNew = async(step) => {
+  switch (step) {
+    case 0:
+      await fetch('/api/appointments', {
+
+      })
+
+  }
+}
+
+export default function CreateModal() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -117,17 +127,16 @@ export default function Checkout() {
             <Typography component="h1" variant="h4" align="center">
               Create New
             </Typography>
-            <Button variant='contained' onClick={handleBack} className={classes.button}>
-              Create Appointment
+            <Button variant='contained' onClick={handleBack}
+                    className={classes.button}>
+              Appointment
             </Button>
             <Button
-                      variant="contained"
-
-                      onClick={handleNext}
-                      className={classes.button}
-                      >
-                      {/* {activeStep === steps.length - 1 ? 'Place order' : 'Next'} */}
-                      Create To Do
+              variant="contained"
+              onClick={handleNext}
+              className={classes.button}
+              >
+              To Do
             </Button>
             {/* <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((label) => (
@@ -137,7 +146,7 @@ export default function Checkout() {
               ))}
             </Stepper> */}
             <React.Fragment>
-              {activeStep === steps.length ? (
+              {/* {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
                     Thank you for your order.
@@ -147,7 +156,7 @@ export default function Checkout() {
                     send you an update when your order has shipped.
                   </Typography>
                 </React.Fragment>
-              ) : (
+              ) : ( */}
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   {/* <div className={classes.buttons}>
@@ -165,8 +174,12 @@ export default function Checkout() {
                       {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                     </Button> */}
                   {/* </div> */}
+                <Button variant='contained' onClick={handleSubmitNew}
+                  className={classes.button}>
+                  Create Here
+                </Button>
                 </React.Fragment>
-              )}
+              {/* )} */}
             </React.Fragment>
           </Paper>
           <Copyright />

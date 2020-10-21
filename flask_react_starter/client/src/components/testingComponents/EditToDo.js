@@ -9,7 +9,7 @@ export default function CreateToDo() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Create To Do
+        Edit To Do
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -17,7 +17,6 @@ export default function CreateToDo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            required
             id="cardNumber"
             label="Due Date (optional)"
             fullWidth
@@ -27,7 +26,6 @@ export default function CreateToDo() {
         <Grid item xs={12}>
           <TextField required id="expDate" label="To Do List Item" fullWidth autoComplete="cc-exp" />
         </Grid>
-        
         {/* <Grid item xs={12} md={6}>
           <TextField
             required
