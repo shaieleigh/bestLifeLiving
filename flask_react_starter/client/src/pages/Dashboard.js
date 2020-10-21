@@ -123,17 +123,17 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(2),
   },
   paper: {
-    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 340,
+    height: 310,
   },
   logoutButton: {
     flexGrow: 2,
@@ -175,7 +175,7 @@ export default function Dashboard() {
 
 
 
-  if (!currentUserId) return <Redirect to='login'/>
+  // if (!currentUserId) return <Redirect to='login'/>
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -183,7 +183,7 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- 
+
 
   const handleHideModal = (e) => {
     if(showCreateModal) {
@@ -216,7 +216,7 @@ export default function Dashboard() {
             <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" noWrap className={classes.title}>
-              Best Life Dashboard
+              Demo's Best Life Dashboard
             </Typography>
             <ListItem button onClick={logout} className={classes.logoutButton}>
               <ListItemIcon>
@@ -235,13 +235,8 @@ export default function Dashboard() {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg">
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <DateBar />
-              {/* <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  {nowDate}
-                </Paper>
-              </Grid> */}
               <Grid
                 item xs={12} md={6} lg={6}
                 className={clsx(!apptToDoOV && classes.menuButtonHidden )}

@@ -8,9 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function CreateToDo() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Create To Do
-      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField required id="cardName" label="To Do List Type" fullWidth autoComplete="cc-name" />
@@ -21,13 +18,12 @@ export default function CreateToDo() {
             id="cardNumber"
             label="Due Date (optional)"
             fullWidth
-            // autoComplete="cc-number"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField required id="expDate" label="To Do List Item" fullWidth autoComplete="cc-exp" />
         </Grid>
-        
+
         {/* <Grid item xs={12} md={6}>
           <TextField
             required

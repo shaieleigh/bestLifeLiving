@@ -8,9 +8,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function CreateNewAppt() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      {/* <Typography variant="h6" gutterBottom>
         Edit Appointment
-      </Typography>
+      </Typography> */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField

@@ -57,5 +57,13 @@ every time I thought I was being rejected from
 something good, I was actually being redirected to
 something better." -Steve Maraboli
 
+"Trust your hard work. It's unlocking doors, you can't see yet."
 
+"You can do this today! You got this!"
+
+"Your are an amazing person!"
+
+"Trust and believe in yourself!"
+"You are awesome!"
+"You are beautiful!"
 

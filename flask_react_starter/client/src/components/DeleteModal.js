@@ -17,6 +17,7 @@ import Modal from '@material-ui/core/Modal';
 
 import DeleteAppt from './testingComponents/DeleteAppt'
 import DeleteToDo from './testingComponents/DeleteToDo'
+import { FormHelperText } from '@material-ui/core';
 
 
 function Copyright() {
@@ -24,7 +25,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Best Life Living
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -35,6 +36,19 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
+    width: 'auto',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      padding: theme.spacing(3),
+    },
+  },
+  appBarHeading: {
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
   layout: {
     width: 'auto',
@@ -51,8 +65,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
   },
@@ -65,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(5),
+    // marginLeft: theme.spacing(3),
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -73,7 +85,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
-    right: '25%',
+  },
+  centerButton: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  modalButtonBar: {
+    display: 'flex',
+    justifyContent: 'space-around',
   },
 }));
 
@@ -85,10 +104,18 @@ function getStepContent(step) {
       return <DeleteAppt />;
     case 1:
       return <DeleteToDo />;
-    // case 2:
-    //   return <Review />;
     default:
       throw new Error('Unknown step');
+  }
+}
+
+const handleSubmitDelete = async(step) => {
+  switch (step) {
+    case 0:
+      await fetch('/api/appointments', {
+
+      })
+
   }
 }
 
@@ -109,8 +136,8 @@ export default function DeleteModal() {
       <CssBaseline />
       <div className={classes.createModal}>
         <AppBar position="absolute" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+          <Toolbar className={classes.appBarHeading}>
+            <Typography variant="h4" color="inherit" noWrap>
               Demo's Best Life
             </Typography>
           </Toolbar>
@@ -120,17 +147,19 @@ export default function DeleteModal() {
             <Typography component="h1" variant="h4" align="center">
               Delete
             </Typography>
-            <Button variant='contained' onClick={handleBack} className={classes.button}>
-              Appointment
-            </Button>
-            <Button
-                      variant="contained"
-                      onClick={handleNext}
-                      className={classes.button}
-                      >
-                      {/* {activeStep === steps.length - 1 ? 'Place order' : 'Next'} */}
-                      To Do
-            </Button>
+            <div className={classes.modalButtonBar}>
+              <Button variant='contained' onClick={handleBack}
+                className={classes.button}>
+                Appointment
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                className={classes.button}
+                >
+                To Do Thang
+              </Button>
+            </div>
             {/* <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((label) => (
                 <Step key={label}>
@@ -139,7 +168,7 @@ export default function DeleteModal() {
               ))}
             </Stepper> */}
             <React.Fragment>
-              {activeStep === steps.length ? (
+              {/* {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
                     Thank you for your order.
@@ -148,9 +177,9 @@ export default function DeleteModal() {
                     Your order number is #2001539. We have emailed your order confirmation, and will
                     send you an update when your order has shipped.
                   </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
+                </React.Fragment> */}
+              {/* ) : ( */}
+                {/* <React.Fragment> */}
                   {getStepContent(activeStep)}
                   {/* <div className={classes.buttons}>
                     {activeStep !== 0 && (
@@ -167,8 +196,14 @@ export default function DeleteModal() {
                       {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                     </Button> */}
                   {/* </div> */}
-                </React.Fragment>
-              )}
+                {/* </React.Fragment>
+              )} */}
+            <div className={classes.centerButton}>
+              <Button variant='contained' onClick={handleSubmitDelete}
+                className={classes.button}>
+                Submit New
+              </Button>
+            </div>
             </React.Fragment>
           </Paper>
           <Copyright />

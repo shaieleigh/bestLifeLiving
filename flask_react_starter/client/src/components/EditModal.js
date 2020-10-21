@@ -24,7 +24,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Best Life Living
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -35,6 +35,19 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
+    width: 'auto',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      padding: theme.spacing(3),
+    },
+  },
+  appBarHeading: {
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
   layout: {
     width: 'auto',
@@ -51,8 +64,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
   },
@@ -65,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(5),
+    // marginLeft: theme.spacing(5),
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -73,7 +84,18 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
-    right: '25%',
+    // right: '25%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 'auto'
+  },
+  centerButton: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  modalButtonBar: {
+    display: 'flex',
+    justifyContent: 'space-around',
   },
 }));
 
@@ -85,10 +107,18 @@ function getStepContent(step) {
       return <EditAppt />;
     case 1:
       return <EditToDo />;
-    // case 2:
-    //   return <Review />;
     default:
       throw new Error('Unknown step');
+  }
+}
+
+const handleSubmitEdit = async(step) => {
+  switch (step) {
+    case 0:
+      await fetch('/api/appointments', {
+
+      })
+
   }
 }
 
@@ -109,8 +139,8 @@ export default function EditModal() {
       <CssBaseline />
       <div className={classes.createModal}>
         <AppBar position="absolute" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+          <Toolbar className={classes.appBarHeading}>
+            <Typography variant="h4" color="inherit" noWrap>
               Demo's Best Life
             </Typography>
           </Toolbar>
@@ -120,17 +150,19 @@ export default function EditModal() {
             <Typography component="h1" variant="h4" align="center">
               Edit
             </Typography>
-            <Button variant='contained' onClick={handleBack} className={classes.button}>
-              Appointment
-            </Button>
-            <Button
-                      variant="contained"
-                      onClick={handleNext}
-                      className={classes.button}
-                      >
-                      {/* {activeStep === steps.length - 1 ? 'Place order' : 'Next'} */}
-                      To Do
-            </Button>
+            <div className={classes.modalButtonBar}>
+              <Button variant='contained' onClick={handleBack}
+                className={classes.button}>
+                Appointment
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                className={classes.button}
+                >
+                To Do
+              </Button>
+            </div>
             {/* <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((label) => (
                 <Step key={label}>
@@ -139,7 +171,7 @@ export default function EditModal() {
               ))}
             </Stepper> */}
             <React.Fragment>
-              {activeStep === steps.length ? (
+              {/* {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
                     Thank you for your order.
@@ -149,7 +181,7 @@ export default function EditModal() {
                     send you an update when your order has shipped.
                   </Typography>
                 </React.Fragment>
-              ) : (
+              ) : ( */}
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   {/* <div className={classes.buttons}>
@@ -167,8 +199,14 @@ export default function EditModal() {
                       {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                     </Button> */}
                   {/* </div> */}
+                <div className={classes.centerButton}>
+                  <Button variant='contained' onClick={handleSubmitEdit}
+                    className={classes.button}>
+                    Submit New
+                  </Button>
+                </div>
                 </React.Fragment>
-              )}
+              {/* )} */}
             </React.Fragment>
           </Paper>
           <Copyright />

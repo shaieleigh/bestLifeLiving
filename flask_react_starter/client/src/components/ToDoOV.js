@@ -11,16 +11,23 @@ export default function  ToDoOV () {
         }
         fetchData();
     }, []);
-  
+
   const toDoLists = toDosLi.filter((todo) => todo.typeId === 1 )
+
+  let count = 0;
+
   const toDoList = toDoLists.map(todo => {
-        return (
-          <p key={todo.id}>{todo.item}</p>
+    while (count < 4) {
+      count++;
+      return (
+        <p key={todo.id}>{todo.item}</p>
         )
-     })
+      }
+  })
+
   return (
       <>
-          <h1>General To Do Overview: </h1>
+          <h1>To Do Overview: </h1>
           {toDoList}
       </>
       );

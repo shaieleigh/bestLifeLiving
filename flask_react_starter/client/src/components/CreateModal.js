@@ -21,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Best Life Living
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,6 +32,19 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
+    width: 'auto',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      padding: theme.spacing(3),
+    },
+  },
+  appBarHeading: {
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
   layout: {
     width: 'auto',
@@ -48,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
+      // marginTop: theme.spacing(6),
+      // marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
   },
@@ -62,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(5),
+    // marginLeft: theme.spacing(5),
     backgroundColor: 'teal',
     color: 'white',
   },
@@ -70,7 +83,19 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
-    right: '25%',
+    // right: '25%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 'auto'
+  },
+  centerButton: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  modalButtonBar: {
+    display: 'flex',
+    justifyContent: 'space-around',
   },
 }));
 
@@ -82,8 +107,6 @@ function getStepContent(step) {
       return <CreateNewAppt />;
     case 1:
       return <CreateToDo />;
-    // case 2:
-    //   return <Review />;
     default:
       throw new Error('Unknown step');
   }
@@ -116,8 +139,8 @@ export default function CreateModal() {
       <CssBaseline />
       <div className={classes.createModal}>
         <AppBar position="absolute" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+          <Toolbar className={classes.appBarHeading}>
+            <Typography variant="h4" color="inherit" noWrap >
               Demo's Best Life
             </Typography>
           </Toolbar>
@@ -127,17 +150,20 @@ export default function CreateModal() {
             <Typography component="h1" variant="h4" align="center">
               Create New
             </Typography>
-            <Button variant='contained' onClick={handleBack}
-                    className={classes.button}>
-              Appointment
-            </Button>
-            <Button
-              variant="contained"
-              onClick={handleNext}
-              className={classes.button}
-              >
-              To Do
-            </Button>
+            <div className={classes.modalButtonBar}>
+              <Button variant='contained' onClick={handleBack}
+                className={classes.button}>
+                Appointment
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                className={classes.button}
+                >
+                To Do
+              </Button>
+            </div>
+
             {/* <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((label) => (
                 <Step key={label}>
@@ -174,10 +200,12 @@ export default function CreateModal() {
                       {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                     </Button> */}
                   {/* </div> */}
-                <Button variant='contained' onClick={handleSubmitNew}
-                  className={classes.button}>
-                  Create Here
-                </Button>
+                <div className={classes.centerButton}>
+                  <Button variant='contained' onClick={handleSubmitNew}
+                    className={classes.button}>
+                    Submit New
+                  </Button>
+                </div>
                 </React.Fragment>
               {/* )} */}
             </React.Fragment>
