@@ -105,7 +105,7 @@ export default function assistVReducer(state=initState, action) {
         state['deleteModal'] = action.deleteModal;
         return state;
       case PULL_APPTS:
-        return action.appoitments
+        return action.appointments
       default:
         return state;
     }
