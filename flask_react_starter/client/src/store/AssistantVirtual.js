@@ -5,6 +5,7 @@ const SET_TODO_LI = 'SET_TODO_LI';
 const SET_CREATE_MODAL = 'SET_CREATE_MODAL'
 const SET_EDIT_MODAL = 'SET_EDIT_MODAL'
 const SET_DELETE_MODAL = 'SET_DELETE_MODAL'
+const PULL_APPTS = 'PULL_APPTS'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -54,6 +55,22 @@ export const setShowDeleteModal = (bool) => {
   }
 }
 
+export const pullAppts = (appts) => {
+  return {
+    type: PULL_APPTS,
+    appointments: appts
+  };
+}
+
+export const pullAppointments = () => {
+  return async (dispatch) => {
+    const response = await fetch('/api/appointments');
+    const data = await response.json();
+    console.log(data);
+    dispatch(pullAppts(data.appointments))
+    }
+}
+
 const initState = {
   apptToDoOV: true,
   usersLi: false,
@@ -87,6 +104,8 @@ export default function assistVReducer(state=initState, action) {
       case SET_DELETE_MODAL:
         state['deleteModal'] = action.deleteModal;
         return state;
+      case PULL_APPTS:
+        return action.appoitments
       default:
         return state;
     }

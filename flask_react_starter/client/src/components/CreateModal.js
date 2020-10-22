@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +14,8 @@ import CreateNewAppt from './testingComponents/CreateNewAppt';
 import CreateToDo from './testingComponents/CreateToDo';
 import Review from './testingComponents/Review';
 import Modal from '@material-ui/core/Modal';
+import { pullAppointments } from '../store/assistantVirtual';
+import { useDispatch } from 'react-redux';
 
 
 function Copyright() {
@@ -111,19 +113,15 @@ function getStepContent(step) {
   }
 }
 
-const handleSubmitNew = async(step) => {
-  switch (step) {
-    case 0:
-      await fetch('/api/appointments', {
-
-      })
-
-  }
-}
 
 export default function CreateModal() {
   const classes = useStyles();
+  const dispatch = useDispatch()
   const [activeStep, setActiveStep] = React.useState(0);
+
+  useEffect(() => {
+        dispatch(pullAppointments());
+      }, [dispatch]);
 
   const handleNext = () => {
     setActiveStep(1);
@@ -132,6 +130,16 @@ export default function CreateModal() {
   const handleBack = () => {
     setActiveStep(0);
   };
+
+  const handleSubmitNew = async(step) => {
+  switch (step) {
+    case 0:
+      await fetch('/api/appointments', {
+
+      })
+
+    }
+  }
 
   return (
     <React.Fragment>

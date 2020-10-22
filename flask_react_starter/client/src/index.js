@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import configureStore from './store/configureStore'
 import { Provider } from 'react-redux'
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 // const initState = {
 //   apptToDoOV: true,
@@ -22,7 +24,10 @@ const store = configureStore();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <>
+        <CssBaseline />
+        <App />
+      </>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

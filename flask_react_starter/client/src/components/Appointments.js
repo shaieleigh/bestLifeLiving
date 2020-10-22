@@ -5,9 +5,9 @@ export default function Appointments () {
 
   useEffect(() => {
         async function fetchData() {
-            const response = await fetch('/api/appointments');
-            const data = await response.json();
-            setAppointments(data.appointments);
+          const response = await fetch('/api/appointments');
+          const data = await response.json();
+          setAppointments(data.appointments);
         }
         fetchData();
     }, []);
@@ -26,7 +26,7 @@ export default function Appointments () {
         </div>
       )
     })
-    // console.log("____Rendering Appointments List____")
+
     return (
         <>
             <h1>Appointments List: </h1>

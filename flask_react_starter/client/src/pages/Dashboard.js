@@ -26,7 +26,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
-import { setShowCreateModal, setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
+import { pullAppointments, setShowCreateModal,
+       setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
 import { SideNavBarList } from '../components/SideNavBarList'
 import ToDos from '../components/ToDos'
 import Appointments from '../components/Appointments'
@@ -167,8 +168,10 @@ export default function Dashboard() {
   const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
   const apptLi = useSelector(state => state.assistV.apptLi)
+  // const appointList = useSelector(state => state.assistV.appointments)
   // const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
+
   const logout = async () => {
     await fetch('/api/users/logout', {
       method: 'DELETE',
@@ -181,7 +184,7 @@ export default function Dashboard() {
 
 
 
-  if (!currentUserId) return <Redirect to='login'/>
+  // if (!currentUserId) return <Redirect to='login'/>
 
   const handleDrawerOpen = () => {
     setOpen(true);
