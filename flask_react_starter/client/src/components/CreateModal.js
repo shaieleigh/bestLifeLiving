@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,12 +11,12 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+
 import CreateNewAppt from './testingComponents/CreateNewAppt';
 import CreateToDo from './testingComponents/CreateToDo';
 import Review from './testingComponents/Review';
 import Modal from '@material-ui/core/Modal';
-import { pullAppointments } from '../store/assistantVirtual';
-import { useDispatch } from 'react-redux';
+import { pullAppointmentCats, pullAppointments } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -83,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '-15px',
     left: '20%',
-
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -116,12 +116,16 @@ function getStepContent(step) {
 
 export default function CreateModal() {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
+  const appointments = useSelector(state => state.assistV.appointments.appointments);
+  const apptCategories = useSelector(state => state.assistV.appointments.categories);
+  console.log(appointments, apptCategories);
 
   useEffect(() => {
         dispatch(pullAppointments());
-      }, [dispatch]);
+        // dispatch(pullAppointmentCats());
+      }, [activeStep]);
 
   const handleNext = () => {
     setActiveStep(1);

@@ -184,7 +184,7 @@ export default function Dashboard() {
 
 
 
-  if (!currentUserId) return <Redirect to='login'/>
+  // if (!currentUserId) return <Redirect to='login'/>
 
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import { pullAppointmentCats, pullAppointments } from '../../store/assistantVirtual';
+
+
 export default function CreateNewAppt() {
+
+  const dispatch = useDispatch();
+  const appointments = useSelector(state => state.assistV.appointments.appointments);
+  const apptCategories = useSelector(state => state.assistV.appointments.categories);
+  console.log(appointments, apptCategories);
+
+  useEffect(() => {
+        dispatch(pullAppointments());
+        // dispatch(pullAppointmentCats());
+      }, []);
+
   return (
     <React.Fragment>
       {/* <Typography variant="h6" gutterBottom>
         Create New Appointment
       </Typography> */}
       <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Select
+            required
+            id="address1"
+            name="address1"
+            label="Category"
+            fullWidth
+            // autoComplete="shipping address-line1"
+          />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -30,16 +56,6 @@ export default function CreateNewAppt() {
             label="Time"
             fullWidth
             // autoComplete="family-name"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Category"
-            fullWidth
-            // autoComplete="shipping address-line1"
           />
         </Grid>
         <Grid item xs={12}>

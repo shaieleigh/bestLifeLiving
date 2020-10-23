@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -18,6 +19,7 @@ import Modal from '@material-ui/core/Modal';
 import DeleteAppt from './testingComponents/DeleteAppt'
 import DeleteToDo from './testingComponents/DeleteToDo'
 import { FormHelperText } from '@material-ui/core';
+import { pullAppointmentCats, pullAppointments } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -125,7 +127,16 @@ const handleSubmitDelete = async(step) => {
 
 export default function DeleteModal() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
+  const appointments = useSelector(state => state.assistV.appointments.appointments);
+  const apptCategories = useSelector(state => state.assistV.appointments.categories);
+  console.log(appointments, apptCategories);
+
+  useEffect(() => {
+        dispatch(pullAppointments());
+        // dispatch(pullAppointmentCats());
+      }, [activeStep]);
 
   const handleNext = () => {
     setActiveStep(1);

@@ -6,6 +6,7 @@ const SET_CREATE_MODAL = 'SET_CREATE_MODAL'
 const SET_EDIT_MODAL = 'SET_EDIT_MODAL'
 const SET_DELETE_MODAL = 'SET_DELETE_MODAL'
 const PULL_APPTS = 'PULL_APPTS'
+const PULL_APPT_CATS = 'PULL_APPT_CATS'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -67,8 +68,24 @@ export const pullAppointments = () => {
     const response = await fetch('/api/appointments');
     const data = await response.json();
     console.log(data);
-    dispatch(pullAppts(data.appointments))
+    dispatch(pullAppts(data))
     }
+}
+
+export const pullApptCats = (apptCats) => {
+  return {
+    type: PULL_APPT_CATS,
+    apptsCategories: apptCats
+  }
+}
+
+export const pullAppointmentCats = () => {
+  return async (dispatch) => {
+    const response = await fetch('/api/appointments');
+    const data = await response.json();
+    dispatch(pullApptCats(data.categories))
+    console.log(data.categories)
+  }
 }
 
 const initState = {
@@ -79,6 +96,8 @@ const initState = {
   createModal: false,
   editModal: false,
   deleteModal: false,
+  appointments: '',
+  apptsCategories: '',
 }
 
 export default function assistVReducer(state=initState, action) {
@@ -105,7 +124,10 @@ export default function assistVReducer(state=initState, action) {
         state['deleteModal'] = action.deleteModal;
         return state;
       case PULL_APPTS:
-        return action.appointments
+        state['appointments'] = action.appointments;
+        return state;
+      case PULL_APPT_CATS:
+        state['apptsCategories'] = action.apptsCategories;
       default:
         return state;
     }
