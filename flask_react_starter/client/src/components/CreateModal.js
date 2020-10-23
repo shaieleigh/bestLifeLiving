@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
   modalButtonBar: {
     display: 'flex',
     justifyContent: 'space-around',
+    padding: '10px'
   },
 }));
 
@@ -120,12 +121,8 @@ export default function CreateModal() {
   const [activeStep, setActiveStep] = React.useState(0);
   const appointments = useSelector(state => state.assistV.appointments.appointments);
   const apptCategories = useSelector(state => state.assistV.appointments.categories);
-  console.log(appointments, apptCategories);
-
-  useEffect(() => {
-        dispatch(pullAppointments());
-        // dispatch(pullAppointmentCats());
-      }, [activeStep]);
+  const newAppointment = useSelector(state => state.assistV.newAppointment)
+  const newToDo = useSelector(state => state.assistV.NewToDo)
 
   const handleNext = () => {
     setActiveStep(1);
@@ -135,15 +132,28 @@ export default function CreateModal() {
     setActiveStep(0);
   };
 
-  const handleSubmitNew = async(step) => {
-  switch (step) {
-    case 0:
-      await fetch('/api/appointments', {
-
-      })
-
+  const handleSubmitNew = async() => {
+    switch (activeStep) {
+      case 0:
+        await fetch('/api/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newAppointment)
+        })
+      case 1:
+        await fetch('/api/todos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newToDo)
+        })
     }
   }
+
+
 
   return (
     <React.Fragment>

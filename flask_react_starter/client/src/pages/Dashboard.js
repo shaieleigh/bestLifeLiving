@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
@@ -26,7 +26,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
-import { pullAppointments, setShowCreateModal,
+import { pullAppointments, pullAppointmentCats, setShowCreateModal,
        setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
 import { SideNavBarList } from '../components/SideNavBarList'
 import ToDos from '../components/ToDos'
@@ -171,6 +171,11 @@ export default function Dashboard() {
   // const appointList = useSelector(state => state.assistV.appointments)
   // const toDoLi = useSelector(state => state.assistV.toDoLi)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+        dispatch(pullAppointments());
+        dispatch(pullAppointmentCats());
+      }, []);
 
   const logout = async () => {
     await fetch('/api/users/logout', {

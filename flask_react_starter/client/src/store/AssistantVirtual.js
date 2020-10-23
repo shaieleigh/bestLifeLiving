@@ -7,6 +7,7 @@ const SET_EDIT_MODAL = 'SET_EDIT_MODAL'
 const SET_DELETE_MODAL = 'SET_DELETE_MODAL'
 const PULL_APPTS = 'PULL_APPTS'
 const PULL_APPT_CATS = 'PULL_APPT_CATS'
+const NEW_APPOINTMENT = 'NEW_APPOINTMENT'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -68,7 +69,7 @@ export const pullAppointments = () => {
     const response = await fetch('/api/appointments');
     const data = await response.json();
     console.log(data);
-    dispatch(pullAppts(data))
+    dispatch(pullAppts(data.appointments))
     }
 }
 
@@ -88,6 +89,13 @@ export const pullAppointmentCats = () => {
   }
 }
 
+export const newAppointment = (newAppt) => {
+  return {
+    type: NEW_APPOINTMENT,
+    newAppointment: newAppt
+  }
+}
+
 const initState = {
   apptToDoOV: true,
   usersLi: false,
@@ -98,6 +106,8 @@ const initState = {
   deleteModal: false,
   appointments: '',
   apptsCategories: '',
+  newAppointment: {},
+  newToDo: {}, 
 }
 
 export default function assistVReducer(state=initState, action) {
@@ -128,6 +138,10 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case PULL_APPT_CATS:
         state['apptsCategories'] = action.apptsCategories;
+        return state;
+      case NEW_APPOINTMENT:
+        state['newAppointment'] = action.newAppointment;
+
       default:
         return state;
     }

@@ -7,12 +7,7 @@ import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 
-// const initState = {
-//   apptToDoOV: true,
-//   usersLi: false,
-//   apptLi: false,
-//   toDoLi: false
-// }
+
 
 
 
