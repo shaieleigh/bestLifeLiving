@@ -25,12 +25,13 @@ def index():
 def createNewAppt():
   data = request.get_json()
 
+
   category = data['category']
   userId = data['userId']
   date = data['date']
   time = data['time']
   notes = data['notes']
 
-  newAppt = Appointment(
+
 
   )
