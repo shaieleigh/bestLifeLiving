@@ -25,13 +25,27 @@ def index():
 def createNewAppt():
   data = request.get_json()
 
+  print(data)
+  dataTime = data['time']
 
-  category = data['category']
+  category = data['categoryId']
   userId = data['userId']
   date = data['date']
-  time = data['time']
+  # time2 = time.strftime(data['time'], '%H:%M')
+  # time2 = datetime.strptime(data['time'], '%H:%M').time()
+  time2 = data['time']
   notes = data['notes']
 
-
-
+  apptDB = Appointment(
+    categoryId=category,
+    userId=userId,
+    date=date,
+    time=time2,
+    notes=notes
   )
+
+  db.session.add(apptDB)
+  db.session.commit()
+
+  appointmentDB = apptDB.to_dict()
+  return jsonify(appointment=data), 200

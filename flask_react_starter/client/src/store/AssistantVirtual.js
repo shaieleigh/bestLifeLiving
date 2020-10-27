@@ -106,8 +106,14 @@ const initState = {
   deleteModal: false,
   appointments: '',
   apptsCategories: '',
-  newAppointment: {},
-  newToDo: {}, 
+  newAppointment: {
+    categoryId: 0,
+    date: '',
+    time: '',
+    notes: '',
+    userId: 0,
+  },
+  newToDo: {},
 }
 
 export default function assistVReducer(state=initState, action) {

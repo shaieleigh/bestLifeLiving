@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -9,38 +10,69 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 
-import { pullAppointmentCats, pullAppointments, cNAFormChange } from '../../store/assistantVirtual';
 
+import { newAppointment } from '../../store/assistantVirtual';
+
+
+// const useStyles = makeStyles((theme) => ({
+//   button: {
+//     marginTop: theme.spacing(3),
+//     backgroundColor: 'teal',
+//     color: 'white',
+//   },
+//   centerButton: {
+//     display: 'flex',
+//     justifyContent: 'center',
+//     width: '100%'
+//   },
+// }))
 
 export default function CreateNewAppt() {
-
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const appointments = useSelector(state => state.assistV.appointments.appointments);
   let apptCategories = useSelector(state => state.assistV.apptsCategories);
-  let newAppointment = useSelector(state=> state.assistV.newAppointment);
+  let newAppt = useSelector(state=> state.assistV.newAppointment);
 
+  console.log(newAppt)
 
+  const handleSubmitNew = async() => {
+
+        await fetch('/api/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newAppt)
+
+        })
+  }
 
   const handleChangeCategory = async(e) => {
     e.preventDefault();
     const categoryId = e.target.value
-    newAppointment['categoryId'] = categoryId
+    newAppt['categoryId'] = categoryId
+    dispatch(newAppointment(newAppt))
   }
 
   const handleDate = async(e) => {
     e.preventDefault();
-    newAppointment['date'] = e.target.value
+    newAppt['date'] = e.target.value
+    dispatch(newAppointment(newAppt))
   }
 
   const handleTime = async(e) => {
     e.preventDefault();
-    newAppointment['time'] = e.target.value
+    newAppt['time'] = e.target.value
+    dispatch(newAppointment(newAppt))
 
   }
   const handleNotes = async(e) => {
     e.preventDefault();
-    newAppointment['notes'] = e.target.value
+    newAppt['notes'] = e.target.value
+    dispatch(newAppointment(newAppt))
   }
 
 
@@ -59,7 +91,7 @@ export default function CreateNewAppt() {
             label="Category"
             default='doctor'
             fullWidth
-            onClick={handleChangeCategory}
+            onChange={handleChangeCategory}
           >{apptCategories.map(cat =>
             <MenuItem key={cat.id} value={cat.id || ''} onClick={handleChangeCategory}>{cat.category}</MenuItem>)}
           </Select>
@@ -98,6 +130,14 @@ export default function CreateNewAppt() {
             onChange={handleNotes}
           />
         </Grid>
+
+          {/* <div className={classes.centerButton}>
+            <Button variant='contained' onClick={handleSubmitNew}
+             className={classes.button}>
+              Submit New
+            </Button>
+          </div> */}
+
         {/* <Grid item xs={12} sm={6}>
           <TextField
             required

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from "js-cookie";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -118,11 +119,13 @@ function getStepContent(step) {
 export default function CreateModal() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const currentUserId = useSelector(state => state.auth.id);
   const [activeStep, setActiveStep] = React.useState(0);
   const appointments = useSelector(state => state.assistV.appointments.appointments);
   const apptCategories = useSelector(state => state.assistV.appointments.categories);
   const newAppointment = useSelector(state => state.assistV.newAppointment)
   const newToDo = useSelector(state => state.assistV.NewToDo)
+  newAppointment['userId'] = currentUserId
 
   const handleNext = () => {
     setActiveStep(1);
@@ -135,10 +138,11 @@ export default function CreateModal() {
   const handleSubmitNew = async() => {
     switch (activeStep) {
       case 0:
-        await fetch('/api/appointments', {
+        await fetch('/api/appointments/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
           },
           body: JSON.stringify(newAppointment)
         })
@@ -150,10 +154,11 @@ export default function CreateModal() {
           },
           body: JSON.stringify(newToDo)
         })
-    }
+      }
   }
 
 
+  console.log(newAppointment)
 
   return (
     <React.Fragment>
