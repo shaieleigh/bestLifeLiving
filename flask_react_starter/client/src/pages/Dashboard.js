@@ -26,8 +26,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 
 import { setUser } from '../store/auth';
-import { pullAppointments, pullAppointmentCats, setShowCreateModal,
-       setShowDeleteModal, setShowEditModal } from '../store/assistantVirtual'
+import {
+  pullAppointments,
+  pullAppointmentCats,
+  setShowCreateModal,
+  setShowDeleteModal,
+  setShowEditModal,
+  pullToDoTypes,
+  pullToDos } from '../store/assistantVirtual'
 import { SideNavBarList } from '../components/SideNavBarList'
 import ToDos from '../components/ToDos'
 import Appointments from '../components/Appointments'
@@ -175,6 +181,8 @@ export default function Dashboard() {
   useEffect(() => {
         dispatch(pullAppointments());
         dispatch(pullAppointmentCats());
+        dispatch(pullToDos());
+        dispatch(pullToDoTypes())
       }, []);
 
   const logout = async () => {

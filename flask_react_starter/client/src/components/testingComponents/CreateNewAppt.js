@@ -38,17 +38,17 @@ export default function CreateNewAppt() {
 
   console.log(newAppt)
 
-  const handleSubmitNew = async() => {
+  // const handleSubmitNew = async() => {
 
-        await fetch('/api/appointments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newAppt)
+  //       await fetch('/api/appointments', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(newAppt)
 
-        })
-  }
+  //       })
+  // }
 
   const handleChangeCategory = async(e) => {
     e.preventDefault();
@@ -69,6 +69,7 @@ export default function CreateNewAppt() {
     dispatch(newAppointment(newAppt))
 
   }
+  
   const handleNotes = async(e) => {
     e.preventDefault();
     newAppt['notes'] = e.target.value
@@ -89,7 +90,8 @@ export default function CreateNewAppt() {
             labelId='label'
             id="select"
             label="Category"
-            default='doctor'
+            default={apptCategories[0].id}
+            // value={apptCategories[0].id}
             fullWidth
             onChange={handleChangeCategory}
           >{apptCategories.map(cat =>
@@ -99,13 +101,13 @@ export default function CreateNewAppt() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="fullname"
+            id="date"
             name="date"
             type='date'
             label='date'
             InputLabelProps={{ shrink: true }}
-            fullWidth
             onChange={handleDate}
+            fullWidth
           />
         </Grid>
         <Grid item xs={12} sm={6}>

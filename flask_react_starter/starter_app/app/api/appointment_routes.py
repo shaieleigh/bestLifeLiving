@@ -18,7 +18,8 @@ def index():
     print(timeDue)
     item['time'] = timeDue
     item['date'] = dateDue
-  categories = [appointment.categories.to_dict() for appointment in appointments]
+  apptCategories = AppointmentCategory.query.all()
+  categories = [apptCategory.to_dict() for apptCategory in apptCategories]
   return { 'appointments': listAppts, 'categories': categories }
 
 @appointment_routes.route('/', methods=['POST'])

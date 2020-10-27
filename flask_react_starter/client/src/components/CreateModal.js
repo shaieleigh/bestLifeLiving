@@ -15,9 +15,10 @@ import Typography from '@material-ui/core/Typography';
 
 import CreateNewAppt from './testingComponents/CreateNewAppt';
 import CreateToDo from './testingComponents/CreateToDo';
-import Review from './testingComponents/Review';
 import Modal from '@material-ui/core/Modal';
-import { pullAppointmentCats, pullAppointments } from '../store/assistantVirtual';
+import { setShowCreateModal,
+  newAppointment,
+  setNewToDo } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -100,6 +101,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     padding: '10px'
   },
+  modalHidden: {
+    display: 'none',
+  },
 }));
 
 const steps = ['Create Appointment', 'Create To Do'];
@@ -120,12 +124,13 @@ export default function CreateModal() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.auth.id);
-  const [activeStep, setActiveStep] = React.useState(0);
+  let [activeStep, setActiveStep] = React.useState(0);
   const appointments = useSelector(state => state.assistV.appointments.appointments);
   const apptCategories = useSelector(state => state.assistV.appointments.categories);
-  const newAppointment = useSelector(state => state.assistV.newAppointment)
-  const newToDo = useSelector(state => state.assistV.NewToDo)
-  newAppointment['userId'] = currentUserId
+  const newAppt = useSelector(state => state.assistV.newAppointment)
+  const newToDo = useSelector(state => state.assistV.newToDo)
+  newAppt['userId'] = currentUserId
+  newToDo['userId'] = currentUserId
 
   const handleNext = () => {
     setActiveStep(1);
@@ -136,34 +141,46 @@ export default function CreateModal() {
   };
 
   const handleSubmitNew = async() => {
-    switch (activeStep) {
-      case 0:
-        await fetch('/api/appointments/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
-          },
-          body: JSON.stringify(newAppointment)
-        })
-      case 1:
-        await fetch('/api/todos', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newToDo)
-        })
-      }
+    if (activeStep === 0) {
+
+      await fetch('/api/appointments/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        },
+        body: JSON.stringify(newAppt)
+      })
+      .then(() =>{
+        dispatch(newAppointment({}))
+        dispatch(setShowCreateModal(false))
+      })
+
+    } else {
+
+      await fetch('/api/todos/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        },
+        body: JSON.stringify(newToDo)
+      })
+      .then(() =>{
+        dispatch(setNewToDo({}))
+        dispatch(setShowCreateModal(false))
+      })
+    }
+
   }
 
 
-  console.log(newAppointment)
+  console.log(newAppt)
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.createModal}>
+      <div className={activeStep === 2 ? classes.modalHidden : classes.createModal}>
         <AppBar position="absolute" color="default" className={classes.appBar}>
           <Toolbar className={classes.appBarHeading}>
             <Typography variant="h4" color="inherit" noWrap >

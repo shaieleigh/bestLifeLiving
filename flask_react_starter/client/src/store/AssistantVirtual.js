@@ -8,6 +8,9 @@ const SET_DELETE_MODAL = 'SET_DELETE_MODAL'
 const PULL_APPTS = 'PULL_APPTS'
 const PULL_APPT_CATS = 'PULL_APPT_CATS'
 const NEW_APPOINTMENT = 'NEW_APPOINTMENT'
+const PULL_TODOS = 'PULL_TODOS'
+const PULL_TODO_TYPES = 'PULL_TODO_TYPES'
+const NEW_TODO = 'NEW_TODO'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -96,6 +99,45 @@ export const newAppointment = (newAppt) => {
   }
 }
 
+export const pullTDs = (todos) => {
+  return {
+    type: PULL_TODOS,
+    todos
+  };
+}
+
+export const pullToDos = () => {
+  return async (dispatch) => {
+    const response = await fetch('/api/todos');
+    const data = await response.json();
+    console.log(data);
+    dispatch(pullTDs(data.todos))
+    }
+}
+
+export const pullTDTypes = (toDoTypes) => {
+  return {
+    type: PULL_TODO_TYPES,
+    toDoTypes
+  }
+}
+
+export const pullToDoTypes = () => {
+  return async (dispatch) => {
+    const response = await fetch('/api/todos');
+    const data = await response.json();
+    dispatch(pullTDTypes(data.types2))
+    console.log('data.types2', data.types2)
+  }
+}
+
+export const setNewToDo = (newToDo) => {
+  return {
+    type: NEW_TODO,
+    newToDo
+  }
+}
+
 const initState = {
   apptToDoOV: true,
   usersLi: false,
@@ -113,7 +155,14 @@ const initState = {
     notes: '',
     userId: 0,
   },
-  newToDo: {},
+  toDos: '',
+  toDoTypes: '',
+  newToDo: {
+    userId: 0,
+    typeId: 0,
+    item: '',
+    dueDate: '',
+  },
 }
 
 export default function assistVReducer(state=initState, action) {
@@ -147,7 +196,16 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case NEW_APPOINTMENT:
         state['newAppointment'] = action.newAppointment;
-
+      //  return state;
+      case PULL_TODOS:
+        state['toDos'] = action.todos;
+        return state;
+      case PULL_TODO_TYPES:
+        state['toDoTypes'] = action.toDoTypes;
+        return state;
+      case NEW_TODO:
+        state['newToDo'] = action.newToDo;
+      //  return state;
       default:
         return state;
     }
