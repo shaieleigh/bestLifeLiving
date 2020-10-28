@@ -11,6 +11,8 @@ const NEW_APPOINTMENT = 'NEW_APPOINTMENT'
 const PULL_TODOS = 'PULL_TODOS'
 const PULL_TODO_TYPES = 'PULL_TODO_TYPES'
 const NEW_TODO = 'NEW_TODO'
+const EDIT_TODO = 'EDIT_TODO'
+const EDIT_APPT = 'EDIT_APPT'
 
 export const setApptToDoOV = (bool) => {
     return {
@@ -138,6 +140,20 @@ export const setNewToDo = (newToDo) => {
   }
 }
 
+export const setEditAppt = (edited) => {
+  return {
+    type: EDIT_APPT,
+    editAppt: edited,
+  }
+}
+
+export const setEditToDo = (edited) => {
+  return {
+    type: EDIT_TODO,
+    editToDo: edited
+  }
+}
+
 const initState = {
   apptToDoOV: true,
   usersLi: false,
@@ -163,6 +179,8 @@ const initState = {
     item: '',
     dueDate: '',
   },
+  editToDo: {},
+  editAppt: {},
 }
 
 export default function assistVReducer(state=initState, action) {
@@ -206,6 +224,12 @@ export default function assistVReducer(state=initState, action) {
       case NEW_TODO:
         state['newToDo'] = action.newToDo;
       //  return state;
+      case EDIT_APPT:
+        state['editAppt'] = action.editAppt
+        return state;
+      case EDIT_TODO:
+        state['editToDo'] = action.editToDo
+        return state;
       default:
         return state;
     }

@@ -48,3 +48,15 @@ def createToDo():
   db.session.add(toDoDB)
   db.session.commit()
   return jsonify(toDo=data), 200
+
+@todo_routes.route('/', methods=['PUT'])
+def editToDo():
+  data = request.get_json()
+  print('DATA TODO PUT', data)
+  todo = ToDo.query.filter_by(id=data.toDoId)
+  print('TODO PUT-todo', todo)
+  for k,v in data:
+    setattr(todo, k, v)
+
+  db.session.commit()
+  return jsonify(toDo=data), 200

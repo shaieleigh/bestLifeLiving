@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from "js-cookie";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,14 +12,15 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import CreateNewAppt from './testingComponents/CreateNewAppt';
-import CreateToDo from './testingComponents/CreateToDo';
-import Review from './testingComponents/Review';
 import Modal from '@material-ui/core/Modal';
 
 import EditAppt from './testingComponents/EditAppt'
 import EditToDo from './testingComponents/EditToDo'
-import { pullAppointmentCats, pullAppointments } from '../store/assistantVirtual';
+import { setShowEditModal,
+  setEditAppt,
+  setEditToDo,
+  pullAppointmentCats,
+  pullAppointments } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -114,28 +116,54 @@ function getStepContent(step) {
   }
 }
 
-const handleSubmitEdit = async(step) => {
-  switch (step) {
-    case 0:
-      await fetch('/api/appointments', {
 
-      })
-
-  }
-}
 
 export default function EditModal() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const currentUserId = useSelector(state => state.auth.id);
   const [activeStep, setActiveStep] = React.useState(0);
   const appointments = useSelector(state => state.assistV.appointments.appointments);
   const apptCategories = useSelector(state => state.assistV.appointments.categories);
-  console.log(appointments, apptCategories);
+  const editAppt = useSelector(state => state.assistV.editAppt)
+  const editToDo = useSelector(state => state.assistV.editToDo)
+  editAppt['userId'] = currentUserId
+  editToDo['userId'] = currentUserId
 
-  useEffect(() => {
-        dispatch(pullAppointments());
-        // dispatch(pullAppointmentCats());
-      }, [activeStep]);
+
+  const handleSubmitEdit = async(step) => {
+    if (activeStep === 0) {
+
+      await fetch('/api/appointments/', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        },
+        body: JSON.stringify(editAppt)
+      })
+      .then(() =>{
+        dispatch(setEditAppt({}))
+        dispatch(setShowEditModal(false))
+      })
+
+    } else {
+
+      await fetch('/api/todos/', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        },
+        body: JSON.stringify(editToDo)
+      })
+      .then(() =>{
+        dispatch(setEditToDo({}))
+        dispatch(setShowEditModal(false))
+      })
+    }
+  }
+
 
   const handleNext = () => {
     setActiveStep(1);
@@ -213,7 +241,7 @@ export default function EditModal() {
                 <div className={classes.centerButton}>
                   <Button variant='contained' onClick={handleSubmitEdit}
                     className={classes.button}>
-                    Submit New
+                    Submit Edit
                   </Button>
                 </div>
                 </React.Fragment>

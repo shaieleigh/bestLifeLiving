@@ -50,3 +50,15 @@ def createNewAppt():
 
   appointmentDB = apptDB.to_dict()
   return jsonify(appointment=data), 200
+
+@appointment_routes.route('/', methods=['PUT'])
+def editAppt():
+  data = request.get_json()
+  print('DATA APPT PUT', data)
+  appointment = Appointment.query.filter_by(id=data.apptId)
+  print('APPOINTMENT PUT-appointment', appointment)
+  for k,v in data:
+    setattr(appointment, k, v)
+
+  db.session.commit()
+  return jsonify(apptmnt=data), 200

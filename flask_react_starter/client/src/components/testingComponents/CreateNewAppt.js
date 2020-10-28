@@ -16,19 +16,6 @@ import Button from '@material-ui/core/Button';
 import { newAppointment } from '../../store/assistantVirtual';
 
 
-// const useStyles = makeStyles((theme) => ({
-//   button: {
-//     marginTop: theme.spacing(3),
-//     backgroundColor: 'teal',
-//     color: 'white',
-//   },
-//   centerButton: {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     width: '100%'
-//   },
-// }))
-
 export default function CreateNewAppt() {
   // const classes = useStyles();
   const dispatch = useDispatch();
@@ -59,17 +46,17 @@ export default function CreateNewAppt() {
 
   const handleDate = async(e) => {
     e.preventDefault();
-    newAppt['date'] = e.target.value
-    dispatch(newAppointment(newAppt))
+    newAppt['date'] = e.target.value;
+    dispatch(newAppointment(newAppt));
   }
 
   const handleTime = async(e) => {
     e.preventDefault();
-    newAppt['time'] = e.target.value
-    dispatch(newAppointment(newAppt))
+    newAppt['time'] = e.target.value;
+    dispatch(newAppointment(newAppt));
 
   }
-  
+
   const handleNotes = async(e) => {
     e.preventDefault();
     newAppt['notes'] = e.target.value

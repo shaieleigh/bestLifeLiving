@@ -13,7 +13,6 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import CreateNewAppt from './testingComponents/CreateNewAppt';
 import CreateToDo from './testingComponents/CreateToDo';
-import Review from './testingComponents/Review';
 import Modal from '@material-ui/core/Modal';
 
 import DeleteAppt from './testingComponents/DeleteAppt'
