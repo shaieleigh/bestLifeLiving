@@ -55,10 +55,24 @@ def createNewAppt():
 def editAppt():
   data = request.get_json()
   print('DATA APPT PUT', data)
-  appointment = Appointment.query.filter_by(id=data.apptId)
-  print('APPOINTMENT PUT-appointment', appointment)
-  for k,v in data:
-    setattr(appointment, k, v)
+  id = data['apptId']
+  appointment = Appointment.query.filter_by(id=id)
+  # print('APPOINTMENT PUT-appointment', appointment)
+  if data['date'] != '':
+    dateE = data['date']
+    setattr(appointment, 'date', dateE)
+    db.session.commit()
+  if data['time'] != '':
+    timeE = data['time']
+    setattr(appointment, 'time', timeE)
+    db.session.commit()
+  if data['categoryId'] != '':
+    categoryIdE = data['categoryId']
+    setattr(appointment, 'categoryId', categoryIdE)
+    db.session.commit()
+  if data['notes'] != '':
+    notesE = data['notes']
+    setattr(appointment, 'notes', notesE)
+    db.session.commit()
 
-  db.session.commit()
   return jsonify(apptmnt=data), 200

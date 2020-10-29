@@ -180,7 +180,12 @@ const initState = {
     dueDate: '',
   },
   editToDo: {},
-  editAppt: {},
+  editAppt: {
+    date: '',
+    time: '',
+    notes: '',
+    categoryId: '',
+  },
 }
 
 export default function assistVReducer(state=initState, action) {

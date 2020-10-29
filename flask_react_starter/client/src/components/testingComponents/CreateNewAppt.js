@@ -112,8 +112,8 @@ export default function CreateNewAppt() {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
+            id="notes"
+            name="notes"
             label="Notes"
             fullWidth
             onChange={handleNotes}
