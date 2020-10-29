@@ -1,12 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import { setEditToDo } from '../../store/assistantVirtual';
+
+const useStyles = makeStyles((theme) => ({
+  modalHidden: {
+    display: 'none',
+  },
+}))
 
 export default function CreateToDo() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const editAppt = useSelector(state => state.assistV.editAppt);
   const todos = useSelector(state => state.assistV.toDos);

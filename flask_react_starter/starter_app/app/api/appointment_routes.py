@@ -56,23 +56,29 @@ def editAppt():
   data = request.get_json()
   print('DATA APPT PUT', data)
   id = data['apptId']
-  appointment = Appointment.query.filter_by(id=id)
-  # print('APPOINTMENT PUT-appointment', appointment)
+  appointment = Appointment.query.filter_by(id=id).all()
+  appt = appointment[0]
+  # appt = get_post(id)
+  print('APPOINTMENT PUT-appointment', appointment)
   if data['date'] != '':
     dateE = data['date']
-    setattr(appointment, 'date', dateE)
+    db.session.execute('UPDATE appt SET date = dateE')
     db.session.commit()
   if data['time'] != '':
     timeE = data['time']
-    setattr(appointment, 'time', timeE)
+    db.session.execute('UPDATE appt SET time = timeE')
     db.session.commit()
   if data['categoryId'] != '':
     categoryIdE = data['categoryId']
-    setattr(appointment, 'categoryId', categoryIdE)
+    print('APPOINTMENT PITA', appointment)
+    db.session.execute('UPDATE appointments SET "categoryId" = ' + str(categoryIdE) + ' WHERE id = ' + str(id) + ';')
     db.session.commit()
+
   if data['notes'] != '':
     notesE = data['notes']
-    setattr(appointment, 'notes', notesE)
+
+    db.session.execute("UPDATE appointments SET notes='" + notesE + "' WHERE id = " + str(id) + ';')
+    # setattr(appt, 'notes', notesE)
     db.session.commit()
 
   return jsonify(apptmnt=data), 200

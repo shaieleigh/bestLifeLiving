@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { setEditAppt } from '../../store/assistantVirtual'
+import { setEditAppt } from '../../store/assistantVirtual';
 
 const useStyles = makeStyles((theme) => ({
   modalHidden: {
