@@ -40,9 +40,9 @@ export default function EditAppt() {
   const handleDate = (e) => {
     e.preventDefault();
     const date = e.target.value
-    console.log('date', date, date.length)
+
     let newDate = date.slice(5, 7) + ' ' + date.slice(8) + ' ' + date.slice(0, 4)
-    console.log('newDate', newDate, newDate.length)
+   
     if(parseInt(date.slice(0,4)) >= 2020) {
       let apptsFiLis = editApptProto.filter(appt => appt.date.slice(2) === newDate)
       console.log ('APPTSFILIS FILTERED', apptsFiLis)

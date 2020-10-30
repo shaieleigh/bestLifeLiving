@@ -22,6 +22,7 @@ export default function CreateToDo() {
   const handleChangeType = async(e) => {
     e.preventDefault();
     const typeId = e.target.value
+    console.log(typeId)
     newToDo['typeId'] = typeId
     dispatch(setNewToDo(newToDo))
   }

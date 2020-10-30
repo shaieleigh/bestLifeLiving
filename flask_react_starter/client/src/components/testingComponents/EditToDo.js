@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,33 +21,81 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateToDo() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const editAppt = useSelector(state => state.assistV.editAppt);
+  const editToDo = useSelector(state => state.assistV.editToDo);
   const todos = useSelector(state => state.assistV.toDos);
+  const toDoTypes = useSelector(state => state.assistV.toDoTypes)
+  let [todoFilteredList, setFilteredList] = useState(0);
+  let [toDoType, setType] = useState('');
+  let [toDoItem, setItem] = useState('');
+  let [editToDoProto, setEditToDoP] = useState(todos);
 
-  const handleDate = (e) => {
+
+  const handleToDoType = (e) => {
     e.preventDefault();
-    todos = todos.filter(todo => todo.date === e.target.value)
+    let toDoType = e.target.value
+    console.log(toDoType)
+    let toDoFilters = editToDoProto.filter(todo => toDoType === todo.typeId)
+    if(toDoFilters.length === 1) {
+      setFilteredList(1)
+      setType(toDoType)
+      setItem(toDoFilters[0].item)
+      editToDo['typeId'] = toDoFilters[0].typeId
+      dispatch(setEditToDo(editToDo))
+    }
+    console.log('TODOFILTERS', toDoFilters)
+    setEditToDoP(toDoFilters)
+  }
+
+  console.log('EDITTODOPROTO', editToDoProto)
+  console.log('EDITTODOPROTO', toDoType)
+  console.log('TODOITEM', toDoItem)
+  console.log('TODOS', todos)
+
+  const handleToDoItem = (e) => {
+    e.preventDefault();
+    let item = e.target.value
+
   }
 
   return (
     <React.Fragment>
-      {/* <Typography variant="h6" gutterBottom>
-        Edit To Do
-      </Typography> */}
+
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="To Do List Type" fullWidth autoComplete="cc-name" />
+          <InputLabel id='label'>To Do Name</InputLabel>
+          <Select
+            required
+            labelId='label'
+            id="select"
+            label="To Do Name"
+            default={toDoTypes[0].id}
+            onChange={handleToDoType}
+            // value={toDoTypes[0].id}
+            fullWidth
+
+          >{toDoTypes.map(type =>
+            <MenuItem key={type.id} value={type.id || ''} onClick={handleToDoType}>{type.type}</MenuItem>)}
+          </Select>
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            id="cardNumber"
+            id="due date"
             label="Due Date (optional)"
             fullWidth
-            // autoComplete="cc-number"
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField required id="expDate" label="To Do List Item" fullWidth autoComplete="cc-exp" />
+          <InputLabel id='label'>To Do Item</InputLabel>
+            <Select
+              required
+              labelId='label'
+              id="select"
+              label="To Do Item"
+              fullWidth
+              onChange={handleToDoItem}
+             >{editToDoProto.map(todo =>
+              <MenuItem key={todo.id} value={todo.id || ''} onClick={handleToDoItem}>{todo.type}</MenuItem>)}
+            </Select>
         </Grid>
         {/* <Grid item xs={12} md={6}>
           <TextField
