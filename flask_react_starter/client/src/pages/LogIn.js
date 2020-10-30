@@ -136,16 +136,16 @@ export default function LogIn() {
             DEMO USER
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2" className={classes.loginLink}>
                 Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2" className={classes.loginLink} >
+            </Grid> */}
+            {/* <Grid item mt={3}> */}
+              <Link href="/signup" variant="body2" className={classes.loginLink} >
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            {/* </Grid> */}
           </Grid>
         </form>
       </div>

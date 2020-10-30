@@ -32,6 +32,7 @@ import {
   setShowCreateModal,
   setShowDeleteModal,
   setShowEditModal,
+  setShowQuoteModal,
   pullToDoTypes,
   pullToDos } from '../store/assistantVirtual'
 import { SideNavBarList } from '../components/SideNavBarList'
@@ -44,6 +45,7 @@ import { DateBar } from '../components/DateBar'
 import CreateModal from '../components/CreateModal'
 import DeleteModal from '../components/DeleteModal'
 import EditModal from '../components/EditModal'
+import Quote from '../components/Quote'
 
 function Copyright() {
   return (
@@ -171,6 +173,7 @@ export default function Dashboard() {
   const showCreateModal = useSelector(state => state.assistV.createModal)
   const showEditModal = useSelector(state => state.assistV.editModal)
   const showDeleteModal = useSelector(state => state.assistV.deleteModal)
+  const showQuoteModal = useSelector(state => state.assistV.quoteModal)
   const apptToDoOV = useSelector(state => state.assistV.apptToDoOV);
   const usersLi = useSelector(state => state.assistV.usersLi)
   const apptLi = useSelector(state => state.assistV.apptLi)
@@ -214,6 +217,8 @@ export default function Dashboard() {
       dispatch(setShowEditModal(false));
     } else if (showDeleteModal) {
       dispatch(setShowDeleteModal(false));
+    } else if (showQuoteModal) {
+      dispatch(setShowQuoteModal(false));
     } else {
       return null;
     }
@@ -326,6 +331,7 @@ export default function Dashboard() {
       {showCreateModal ? <CreateModal /> : null}
       {showEditModal ? <EditModal /> : null}
       {showDeleteModal ? <DeleteModal /> : null}
+      {showQuoteModal ? <Quote /> : null}
     </>
   );
 }

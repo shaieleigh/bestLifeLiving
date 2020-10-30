@@ -5,6 +5,7 @@ import UserList from './components/UsersList';
 import Dashboard from './pages/Dashboard';
 import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
+import Splash from './pages/Splash'
 import Appointments from './components/Appointments'
 import ToDos from './components/ToDos'
 
@@ -46,8 +47,7 @@ function App() {
                 <ToDos />
             </Route>
             <Route path="/">
-                <h1>Landing Page</h1>
-                <NavLink to='/login' activeclass="active">Log in</NavLink>
+                <Splash />
             </Route>
         </Switch>
     </BrowserRouter>

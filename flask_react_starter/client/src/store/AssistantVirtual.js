@@ -5,6 +5,7 @@ const SET_TODO_LI = 'SET_TODO_LI';
 const SET_CREATE_MODAL = 'SET_CREATE_MODAL'
 const SET_EDIT_MODAL = 'SET_EDIT_MODAL'
 const SET_DELETE_MODAL = 'SET_DELETE_MODAL'
+const SET_QUOTE_MODAL = 'SET_QUOTE_MODAL'
 const PULL_APPTS = 'PULL_APPTS'
 const PULL_APPT_CATS = 'PULL_APPT_CATS'
 const NEW_APPOINTMENT = 'NEW_APPOINTMENT'
@@ -59,6 +60,13 @@ export const setShowDeleteModal = (bool) => {
   return {
     type: SET_DELETE_MODAL,
     deleteModal: bool
+  }
+}
+
+export const setShowQuoteModal = (bool) => {
+  return {
+    type: SET_QUOTE_MODAL,
+    quoteModal: bool
   }
 }
 
@@ -162,6 +170,7 @@ const initState = {
   createModal: false,
   editModal: false,
   deleteModal: false,
+  quoteModal: true,
   appointments: '',
   apptsCategories: '',
   newAppointment: {
@@ -210,6 +219,9 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case SET_DELETE_MODAL:
         state['deleteModal'] = action.deleteModal;
+        return state;
+      case SET_QUOTE_MODAL:
+        state['quoteModal'] = action.quoteModal;
         return state;
       case PULL_APPTS:
         state['appointments'] = action.appointments;

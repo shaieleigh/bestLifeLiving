@@ -46,7 +46,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: 'teal',
   },
+  login: {
+    color: 'teal',
+  }
 }));
 
 
@@ -57,7 +61,7 @@ export default function SignupPage() {
     const dispatch = useDispatch();
     // const history = useHistory();
     const currentUserToken = useSelector(state => {
-    
+
       return state.auth.id
     });
     const classes = useStyles()
@@ -131,12 +135,12 @@ export default function SignupPage() {
                 onChange = {e => setPassword(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"
@@ -149,7 +153,7 @@ export default function SignupPage() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2" className={classes.login}>
                 Already have an account? Sign in
               </Link>
             </Grid>
