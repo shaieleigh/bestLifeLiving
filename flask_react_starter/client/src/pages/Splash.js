@@ -42,7 +42,7 @@ export default function Splash(props) {
           color: "white"
         }}
         {...rest}
-      />g
+      />
       <Parallax image={require("./Sections/bLLSplash.png")}>
         <div className={classes.container}>
           <GridContainer>

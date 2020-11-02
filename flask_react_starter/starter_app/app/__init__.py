@@ -46,7 +46,7 @@ def react_root(path):
     if path == 'favicon.ico':
         print("favicon route_____")
         return app.send_static_file('favicon.ico')
-    if path == 'bLLSplash.png'
+    if path == 'bLLSplash.png':
         print("bLLSplash route_____")
         return app.send_static_file('bLLSplash.png')
     print("index route_____")
