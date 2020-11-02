@@ -42,8 +42,8 @@ export default function Splash(props) {
           color: "white"
         }}
         {...rest}
-      />
-      <Parallax filter image={require("./Sections/bLLSplash.png")}>
+      />g
+      <Parallax image={require("./Sections/bLLSplash.png")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>

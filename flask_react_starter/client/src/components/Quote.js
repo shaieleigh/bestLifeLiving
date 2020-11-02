@@ -175,7 +175,6 @@ export default function Quote() {
   }
 
 
-  console.log(newAppt)
 
   return (
     <React.Fragment>

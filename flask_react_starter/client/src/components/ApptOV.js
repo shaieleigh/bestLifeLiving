@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Button from '@material-ui/core/Button';
+
 export default function  AppointmentOV () {
   const [appointmentsLi, setAppointments] = useState([]);
 
@@ -23,7 +25,7 @@ export default function  AppointmentOV () {
       if (demoDate === apptDate) {
 
         return (
-          <p key={appointment.id}>{appointment.notes} {appointment.time}</p>
+          <Button key={appointment.id}>{appointment.notes} {appointment.time}</Button>
           )
       } else {
         return null;
