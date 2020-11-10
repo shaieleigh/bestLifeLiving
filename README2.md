@@ -67,3 +67,10 @@ something better." -Steve Maraboli
 "You are awesome!"
 "You are beautiful!"
 
+"Surround yoursefl with people that push
+you to do and be better. No drama or
+negativity. Just higher goals and higher
+motivation. Good times and postive energy.
+No jealousy or hate. Simply bringing out
+the absolute best in each other."
+-Warren Buffett
