@@ -19,7 +19,7 @@ function UsersList (props) {
 
     return (
         <>
-            <h2>User List: </h2>
+            <h3>User List: </h3>
             {userComponents}
         </>
         );
