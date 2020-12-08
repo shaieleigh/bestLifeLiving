@@ -16,10 +16,10 @@ function UsersList (props) {
 
     const userComponents = users.map((user) => <User key={user.id} user={user} />)
 
-   
+
     return (
         <>
-            <h1>User List: </h1>
+            <h2>User List: </h2>
             {userComponents}
         </>
         );
