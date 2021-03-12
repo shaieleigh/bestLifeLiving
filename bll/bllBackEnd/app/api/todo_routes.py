@@ -6,7 +6,7 @@ from app.models import ToDoType, ToDo, db
 todo_routes = Blueprint('todos', __name__)
 
 @todo_routes.route('/')
-def index():
+def index():   
   # todos = ToDo.query.options(joinedload('types'))
   todos = ToDo.query.join(ToDoType).all()
   todosList = [todo.to_dict() for todo in todos]

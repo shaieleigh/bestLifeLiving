@@ -43,11 +43,11 @@ export default function Splash(props) {
         }}
         {...rest}
       />
-      <Parallax image={require("./Sections/bLLSplash.png")}>
+      <Parallax image={require("../assets/img/bLLSplash.png")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Your Best Life starts here.</h1>
+              <h1 className={classes.title}>Living Your Best Life starts here.</h1>
               <h4>
                 Totally anonymous support community and virtual assistant
                 geared toward people with invisible mental illness. Start living your best life today

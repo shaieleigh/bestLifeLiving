@@ -15,18 +15,6 @@ function App() {
 
   return (
     <BrowserRouter>
-        <nav>
-            {/* <ul>
-                <li><NavLink to="/" activeclass="active">Landing Page</NavLink></li>
-                <li><NavLink to='/signup' activeclass="active">Sign up</NavLink></li>
-                <li><NavLink to='/login' activeclass="active">Log in</NavLink></li>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                <li><NavLink to="/dashboard" activeclass="active">Dashboard</NavLink></li>
-                <li><NavLink to="/appointments" activeclass="active">Appointments</NavLink></li>
-                <li><NavLink to="/todos" activeclass="active">To Dos</NavLink></li>
-            </ul> */}
-
-        </nav>
         <Switch>
             <Route path='/dashboard'>
                 <Dashboard />

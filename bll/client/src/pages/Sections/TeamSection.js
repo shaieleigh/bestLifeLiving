@@ -16,9 +16,9 @@ import CardFooter from "./Card/CardFooter.js";
 
 import styles from "./teamStyle.js";
 
-import team1 from "./bLLSplash.png";
-import team2 from "./bLLSplash.png";
-import team3 from "./bLLSplash.png";
+import team1 from "../../assets/img/bLLSplash.png";
+import team2 from "../../assets/img/bLLSplash.png";
+import team3 from "../../assets/img/bLLSplash.png";
 
 
 
