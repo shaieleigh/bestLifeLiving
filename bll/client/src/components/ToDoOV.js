@@ -55,6 +55,10 @@ export default function  ToDoOV () {
       }
   })
 
+  
+
+  console.log('toDoList', toDoList)
+
   return (
       <>
           <h1>To Do Overview: </h1>
