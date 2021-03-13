@@ -37,32 +37,31 @@ export default function  ToDoOV () {
     //         },
     //         body: JSON.stringify(deleteTD)
     //     });
-   toDoLists.pop()
 
   }
   // let count = 0;
 
-  const toDoList = toDoLists.map(todo => {
-    while (count < 4) {
-      count++;
-      return (
-        <>
-          <div>
-            <Button key={todo.id} name='toDoOV' id='toDoOv' onClick={handleComplete}>{todo.item}</Button>
-          </div>
-        </>
-        )
-      }
-  })
+  // const toDoList = toDoLists.map(todo => {
+  //   while (count < 4) {
+  //     count++;
+  //     return (
+  //       <>
+  //         <div>
+  //           <Button key={todo.id} name='toDoOV' id='toDoOv' onClick={handleComplete}>{todo.item}</Button>
+  //         </div>
+  //       </>
+  //       )
+  //     }
+  // })
 
-  
 
-  console.log('toDoList', toDoList)
+
+  // console.log('toDoList', toDoList)
 
   return (
       <>
           <h1>To Do Overview: </h1>
-          {toDoList}
+          {/* {toDoList} */}
       </>
       );
 
