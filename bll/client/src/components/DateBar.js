@@ -118,9 +118,9 @@ export const DateBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const usersLi = useSelector(state => state.assistV.usersLi)
-  const showCreateModal = useSelector(state => state.assistV.createModal)
-  const showDeleteModal = useSelector(state => state.assistV.deleteModal)
-  const showEditModal = useSelector(state => state.assistV.editModal)
+  // const showCreateModal = useSelector(state => state.assistV.createModal)
+  // const showDeleteModal = useSelector(state => state.assistV.deleteModal)
+  // const showEditModal = useSelector(state => state.assistV.editModal)
   const date = new Date();
   const day = ('0' + date.getDate()).slice(-2);
   const month = ('0' + (date.getMonth() + 1)).slice(-2);

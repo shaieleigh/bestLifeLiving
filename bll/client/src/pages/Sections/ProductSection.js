@@ -3,16 +3,16 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // @material-ui/icons
-import Chat from "@material-ui/icons/Chat";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Fingerprint from "@material-ui/icons/Fingerprint";
+// import Chat from "@material-ui/icons/Chat";
+// import VerifiedUser from "@material-ui/icons/VerifiedUser";
+// import Fingerprint from "@material-ui/icons/Fingerprint";
 // core components
 import GridContainer from "./component/Grid/GridContainer.js";
 import GridItem from "./component/Grid/GridItem.js";
 import InfoArea from "./component/InfoArea/InfoArea.js";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GroupIcon from '@material-ui/icons/Group';
-import AssistantIcon from '@material-ui/icons/Assistant';
+// import AssistantIcon from '@material-ui/icons/Assistant';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
 import styles from "./ProductStyle.js";

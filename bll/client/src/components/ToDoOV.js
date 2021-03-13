@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
 export default function  ToDoOV () {
   const [toDosLi, setToDo] = useState([]);
-  const [deleteToDo, setDelete] = useState({});
-  let [count, setCount] = useState(0);
+  // const [deleteToDo, setDelete] = useState({});
+  // let [count, setCount] = useState(0);
   let [newList, setNewList] = useState(toDosLi)
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export default function  ToDoOV () {
   }, []);
 
   console.log('NEW LIST', newList)
-  const toDoLists = newList.filter((todo) => todo.typeId === 1 )
+  // const toDoLists = newList.filter((todo) => todo.typeId === 1 )
 
-  const handleComplete = async(e) => {
-    e.preventDefault();
+  // const handleComplete = async(e) => {
+    // e.preventDefault();
     // const deleteTD = e.currentTarget.value
     // console.log(e.currentTarget.value);
     // setDelete(deleteTD)
@@ -38,7 +38,7 @@ export default function  ToDoOV () {
     //         body: JSON.stringify(deleteTD)
     //     });
 
-  }
+  // }
   // let count = 0;
 
   // const toDoList = toDoLists.map(todo => {

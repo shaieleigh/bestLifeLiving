@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "rm -rf ../starter_app/app/static && mv build ../starter_app/app/static",
+    "postbuild": "rm -rf ../bllBackEnd/app/static && mv build ../bllBackEnd/app/static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

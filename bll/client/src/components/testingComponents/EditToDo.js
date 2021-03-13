@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { setEditToDo } from '../../store/assistantVirtual';
-import { ListItemSecondaryAction } from '@material-ui/core';
+// import { ListItemSecondaryAction } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   modalHidden: {
@@ -29,7 +29,7 @@ export default function CreateToDo() {
   let [toDoType, setType] = useState('');
   let [toDoItem, setItem] = useState('');
   let [editToDoProto, setEditToDoP] = useState(todos);
-  let [toDoTypeArr, setToDoArr] = useState([]);
+  // let [toDoTypeArr, setToDoArr] = useState([]);
   let [changeItem, setChIt] = useState('');
   let [changeType, setChType] = useState('');
 
@@ -78,7 +78,7 @@ export default function CreateToDo() {
 
   const handleToDoItem = (e) => {
     e.preventDefault();
-    let item = e.target.value
+    // let item = e.target.value
 
   }
 

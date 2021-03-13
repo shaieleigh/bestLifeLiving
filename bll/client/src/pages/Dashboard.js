@@ -186,7 +186,7 @@ export default function Dashboard() {
         dispatch(pullAppointmentCats());
         dispatch(pullToDos());
         dispatch(pullToDoTypes())
-      }, []);
+      });
 
   const logout = async () => {
     await fetch('/api/users/logout', {

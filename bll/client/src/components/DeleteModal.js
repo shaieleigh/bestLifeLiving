@@ -5,20 +5,20 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+// import Stepper from '@material-ui/core/Stepper';
+// import Step from '@material-ui/core/Step';
+// import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import CreateNewAppt from './testingComponents/CreateNewAppt';
-import CreateToDo from './testingComponents/CreateToDo';
-import Modal from '@material-ui/core/Modal';
+// import CreateNewAppt from './testingComponents/CreateNewAppt';
+// import CreateToDo from './testingComponents/CreateToDo';
+// import Modal from '@material-ui/core/Modal';
 
 import DeleteAppt from './testingComponents/DeleteAppt'
 import DeleteToDo from './testingComponents/DeleteToDo'
-import { FormHelperText } from '@material-ui/core';
-import { pullAppointmentCats, pullAppointments } from '../store/assistantVirtual';
+// import { FormHelperText } from '@material-ui/core';
+import { pullAppointments } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Delete Appointment', 'Delete To Do'];
+// const steps = ['Delete Appointment', 'Delete To Do'];
 
 function getStepContent(step) {
   switch (step) {
@@ -119,8 +119,10 @@ const handleSubmitDelete = async(step) => {
     case 0:
       await fetch('/api/appointments', {
 
-      })
-
+      });
+      return null;
+    default:
+      return null;
   }
 }
 
@@ -135,7 +137,7 @@ export default function DeleteModal() {
   useEffect(() => {
         dispatch(pullAppointments());
         // dispatch(pullAppointmentCats());
-      }, [activeStep]);
+      }, [activeStep, dispatch]);
 
   const handleNext = () => {
     setActiveStep(1);

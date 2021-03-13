@@ -231,7 +231,7 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case NEW_APPOINTMENT:
         state['newAppointment'] = action.newAppointment;
-      //  return state;
+       return state;
       case PULL_TODOS:
         state['toDos'] = action.todos;
         return state;
@@ -240,7 +240,7 @@ export default function assistVReducer(state=initState, action) {
         return state;
       case NEW_TODO:
         state['newToDo'] = action.newToDo;
-      //  return state;
+       return state;
       case EDIT_APPT:
         state['editAppt'] = action.editAppt
         return state;

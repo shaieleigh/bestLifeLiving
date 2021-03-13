@@ -28,8 +28,8 @@ export default function HeaderLinks(props) {
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
-          noLiPadding
-          buttonText="Log in"
+          // nolipadding
+          // buttonText="Log in"
           className={classes.navLink}
           color="transparent"
           href='/login'

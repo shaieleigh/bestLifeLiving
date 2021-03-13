@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Cookies from "js-cookie";
+import React from 'react';
+import { useSelector } from 'react-redux';
+// import Cookies from "js-cookie";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
+// import Stepper from '@material-ui/core/Stepper';
+// import Step from '@material-ui/core/Step';
+// import StepLabel from '@material-ui/core/StepLabel';
+// import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-import CreateNewAppt from './testingComponents/CreateNewAppt';
-import CreateToDo from './testingComponents/CreateToDo';
-import Modal from '@material-ui/core/Modal';
-import { setShowCreateModal,
-  newAppointment,
-  setNewToDo } from '../store/assistantVirtual';
+// import CreateNewAppt from './testingComponents/CreateNewAppt';
+// import CreateToDo from './testingComponents/CreateToDo';
+// import Modal from '@material-ui/core/Modal';
+// import { setShowCreateModal,
+//   newAppointment,
+//   setNewToDo } from '../store/assistantVirtual';
 
 
 function Copyright() {
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Create Appointment', 'Create To Do'];
+// const steps = ['Create Appointment', 'Create To Do'];
 
 // function getStepContent(step) {
 //   switch (step) {
@@ -122,57 +122,57 @@ const steps = ['Create Appointment', 'Create To Do'];
 
 export default function Quote() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.auth.id);
   let [activeStep, setActiveStep] = React.useState(0);
-  const appointments = useSelector(state => state.assistV.appointments.appointments);
-  const apptCategories = useSelector(state => state.assistV.appointments.categories);
+  // const appointments = useSelector(state => state.assistV.appointments.appointments);
+  // const apptCategories = useSelector(state => state.assistV.appointments.categories);
   const newAppt = useSelector(state => state.assistV.newAppointment)
   const newToDo = useSelector(state => state.assistV.newToDo)
   newAppt['userId'] = currentUserId
   newToDo['userId'] = currentUserId
 
-  const handleNext = () => {
-    setActiveStep(1);
-  };
+  // const handleNext = () => {
+  //   setActiveStep(1);
+  // };
 
-  const handleBack = () => {
-    setActiveStep(0);
-  };
+  // const handleBack = () => {
+  //   setActiveStep(0);
+  // };
 
-  const handleSubmitNew = async() => {
-    if (activeStep === 0) {
+  // const handleSubmitNew = async() => {
+  //   if (activeStep === 0) {
 
-      await fetch('/api/appointments/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
-        },
-        body: JSON.stringify(newAppt)
-      })
-      .then(() =>{
-        dispatch(newAppointment({}))
-        dispatch(setShowCreateModal(false))
-      })
+  //     await fetch('/api/appointments/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+  //       },
+  //       body: JSON.stringify(newAppt)
+  //     })
+  //     .then(() =>{
+  //       dispatch(newAppointment({}))
+  //       dispatch(setShowCreateModal(false))
+  //     })
 
-    } else {
+  //   } else {
 
-      await fetch('/api/todos/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
-        },
-        body: JSON.stringify(newToDo)
-      })
-      .then(() =>{
-        dispatch(setNewToDo({}))
-        dispatch(setShowCreateModal(false))
-      })
-    }
+  //     await fetch('/api/todos/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+  //       },
+  //       body: JSON.stringify(newToDo)
+  //     })
+  //     .then(() =>{
+  //       dispatch(setNewToDo({}))
+  //       dispatch(setShowCreateModal(false))
+  //     })
+  //   }
 
-  }
+  // }
 
 
 

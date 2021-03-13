@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 // import { TimePicker } from "material-ui-time-picker";
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Button from '@material-ui/core/Button';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import Button from '@material-ui/core/Button';
 
 
 import { newAppointment } from '../../store/assistantVirtual';
@@ -19,7 +19,7 @@ import { newAppointment } from '../../store/assistantVirtual';
 export default function CreateNewAppt() {
   // const classes = useStyles();
   const dispatch = useDispatch();
-  const appointments = useSelector(state => state.assistV.appointments.appointments);
+  // const appointments = useSelector(state => state.assistV.appointments.appointments);
   let apptCategories = useSelector(state => state.assistV.apptsCategories);
   let newAppt = useSelector(state=> state.assistV.newAppointment);
 

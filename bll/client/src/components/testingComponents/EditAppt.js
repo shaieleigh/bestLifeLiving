@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const values = {
-  someDate: '2020-10-30'
-}
+// const values = {
+//   someDate: '2020-10-30'
+// }
 
 export default function EditAppt() {
   const classes = useStyles();
@@ -42,7 +42,7 @@ export default function EditAppt() {
     const date = e.target.value
 
     let newDate = date.slice(5, 7) + ' ' + date.slice(8) + ' ' + date.slice(0, 4)
-   
+
     if(parseInt(date.slice(0,4)) >= 2020) {
       let apptsFiLis = editApptProto.filter(appt => appt.date.slice(2) === newDate)
       console.log ('APPTSFILIS FILTERED', apptsFiLis)
@@ -67,17 +67,17 @@ export default function EditAppt() {
     }
   }
 
-  const handleTime = (e) => {
+  // const handleTime = (e) => {
 
-  }
+  // }
 
   const handleCategory = (e) => {
 
   }
 
-  const handleNotes = (e) => {
+  // const handleNotes = (e) => {
 
-  }
+  // }
 
 
   const handleDateChange = (e) => {

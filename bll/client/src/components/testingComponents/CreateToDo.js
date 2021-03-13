@@ -1,20 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { setNewToDo, pullToDoTypes } from '../../store/assistantVirtual';
+import { setNewToDo } from '../../store/assistantVirtual';
 
 export default function CreateToDo() {
   const dispatch = useDispatch();
-  const currentUserId = useSelector(state => state.auth.id);
-  let toDos = useSelector(state => state.assistV.todos);
+  // const currentUserId = useSelector(state => state.auth.id);
+  // let toDos = useSelector(state => state.assistV.todos);
   let toDoTypes = useSelector(state => state.assistV.toDoTypes)
   let newToDo = useSelector(state => state.assistV.newToDo)
   console.log('toDoTypes', toDoTypes)
