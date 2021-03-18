@@ -47,7 +47,7 @@ export default function Splash(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Living Your Best Life starts here.</h1>
+              <h1 className={classes.title}>Living your best life starts here.</h1>
               <h4>
                 Totally anonymous support community and virtual assistant
                 geared toward people with invisible mental illness. Start living your best life today
